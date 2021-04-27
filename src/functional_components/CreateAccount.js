@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,7 +54,12 @@ const useStyles = makeStyles(() => ({
 export default function CreateAccount() {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
-
+  
+  /* State */ 
+  const [email, setEmail] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleClickOpen = (e) => {
     e.preventDefault();
@@ -66,6 +70,15 @@ export default function CreateAccount() {
     setOpen(false);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submit form")
+    console.log(email)
+    console.log(firstName)
+    console.log(lastName)
+    console.log(password)
+  }
+
   return (
     <div>
       <Link href="/" onClick={handleClickOpen} className={classes.link}>
@@ -75,7 +88,9 @@ export default function CreateAccount() {
       className={classes.root}>
         <DialogTitle id="form-dialog-title">Sign Up</DialogTitle>
         <DialogContent>
-            <TextField id="first_name" label="first name" variant="filled" type="text" defaultValue="" color="primary"
+          <form onSubmit={handleSubmit}>
+            <TextField id="first_name" label="first name" variant="filled" type="text" color="primary"
+            value={firstName} onChange={e => setFirstName(e.target.value)}
               inputProps={{
                 className: classes.textField
               }}
@@ -85,7 +100,8 @@ export default function CreateAccount() {
             />
             <br/>
             <br/>
-            <TextField id="last_name" label="last name" variant="filled" type="text" defaultValue="" color="primary"
+            <TextField id="last_name" label="last name" variant="filled" type="text" color="primary"
+            value={lastName} onChange={e => setLastName(e.target.value)}
               inputProps={{
                 className: classes.textField
               }}
@@ -95,7 +111,8 @@ export default function CreateAccount() {
             />
             <br/>
             <br/>
-            <TextField id="email" label="email" variant="filled" type="email" defaultValue="" color="primary"
+            <TextField id="email" label="email" variant="filled" type="email" color="primary"
+            value={email} onChange={e => setEmail(e.target.value)}
               inputProps={{
                 className: classes.textField
               }}
@@ -105,7 +122,8 @@ export default function CreateAccount() {
             />
             <br/>
             <br/>
-            <TextField id="password" label="password" variant="filled" type="password" defaultValue="" color="primary" className={classes.root}
+            <TextField id="password" label="password" variant="filled" type="password" color="primary"
+            value={password} onChange={e => setPassword(e.target.value)}
               inputProps={{
                   className: classes.textField
               }}
@@ -113,15 +131,16 @@ export default function CreateAccount() {
                 className: classes.textField
               }}
             />
+            <br/>
+            <br/>
+            <Button color="primary" type="submit">
+              Sign Up
+            </Button>
+            <Button onClick={handleClose} color="secondary">
+              Cancel
+            </Button>
+          </form>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Sign Up
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

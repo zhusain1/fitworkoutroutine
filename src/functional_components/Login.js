@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import logo from '../img/logo-transparent.png'
 import CreateAccount from './CreateAccount';
 import { useHistory } from 'react-router';
+import api from '../util/api';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -50,7 +51,22 @@ const useStyles = makeStyles(() => ({
       e.preventDefault();
 
       if(email.length > 0 && password.length > 0){
-        history.push('/secure');
+
+        const req = {
+          email: email,
+          password: password
+        }
+        api({
+          method: 'post',
+          url: '/user/findUser',
+          data: req
+        }).then( res => {
+            console.log(res.data)
+            history.push('/secure');
+          })
+          .catch((error) => {
+            console.log(error.response.data)
+          });
       }
     }
 

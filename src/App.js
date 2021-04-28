@@ -1,10 +1,29 @@
 import { useHistory } from "react-router";
+import api from './util/api';
 
 function App(props) {
   const history = useHistory();
-  let loggedIn = true;
+
+  const validateLoggedinStatus = () => {
+    let loggedIn = false;
+
+    api({
+      method: 'get',
+      url: '/user/token',
+    }).then( res => {
+        console.log(res.data)
+        loggedIn = true;
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+        loggedIn = false;
+      });
+    return loggedIn;
+  }
+
+
   const validateRoute = () => {
-    if(loggedIn){
+    if(validateLoggedinStatus()){
       return(
         <div className="App">
             You are logged in

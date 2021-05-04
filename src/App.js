@@ -1,32 +1,25 @@
 import { useHistory } from "react-router";
-import api from './util/api';
+import { useLocation } from "react-router-dom";
+import MainTabs from './functional_components/MainTabs';
 
-function App(props) {
+function App() {
   const history = useHistory();
+  const location = useLocation();
 
-  const validateLoggedinStatus = () => {
-    let loggedIn = false;
+  const validateToken = () => {
 
-    api({
-      method: 'get',
-      url: '/user/token',
-    }).then( res => {
-        console.log(res.data)
-        loggedIn = true;
-      })
-      .catch((error) => {
-        console.log(error.response.data)
-        loggedIn = false;
-      });
-    return loggedIn;
+    if(typeof location.state === 'undefined'){
+      return false;
+    } else{
+      return true;
+    }
   }
 
-
   const validateRoute = () => {
-    if(validateLoggedinStatus()){
+    if(validateToken()){
       return(
         <div className="App">
-            You are logged in
+            <MainTabs/>
         </div>
       )
     } else{

@@ -10,13 +10,16 @@ const useStyles = makeStyles({
     minWidth: 200,
     width: 600,
     textAlign: 'center',
-    height: '70vh',
+    height: '72vh',
     color: 'white',
     backgroundColor: '#131416',
-    boxShadow: '0 -1px 1px #131416'
+    boxShadow: '0 -1px 1px #131416',
+    '@media (min-width: 1300px)': {
+      height: '50vh'
+    },
   },
   grid: {
-      paddingTop: '16vh'
+      paddingTop: '6vh'
   }
 });
 

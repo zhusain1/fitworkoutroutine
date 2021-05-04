@@ -6,6 +6,7 @@ import logo from '../img/logo-transparent.png'
 import CreateAccount from './CreateAccount';
 import { useHistory } from 'react-router';
 import api from '../util/api';
+import ErrorMessage from './ErrorMessage';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -35,6 +36,9 @@ const useStyles = makeStyles(() => ({
       backgroundColor: 'black',
       color: 'white'
     },
+    '&:disabled': {
+      color: 'white'
+    },
   }
 }));
 
@@ -46,6 +50,7 @@ const useStyles = makeStyles(() => ({
     /* State */ 
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [error, setError] = React.useState("");
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -61,17 +66,34 @@ const useStyles = makeStyles(() => ({
           url: '/user/findUser',
           data: req
         }).then( res => {
-            console.log(res.data)
-            history.push('/secure');
+            setError('');
+
+            history.push(
+              '/secure',
+              {token: res.data} 
+            );
           })
           .catch((error) => {
-            console.log(error.response.data)
+            setError(error.response.data);
+            setPassword('');
           });
       }
     }
 
+    const displayError = () => {
+      console.log(error);
+      if(error.length > 0 ){
+        return <ErrorMessage error={error}/>
+      }
+    }
+
+    const disabled = () => {
+     return !email || !password
+    }
+
     return (
       <div className="Login">
+        {displayError()}
         <img src={logo} alt="logo" width="250" height="140"/>
         <>
             <form onSubmit={handleSubmit}>
@@ -101,7 +123,7 @@ const useStyles = makeStyles(() => ({
                 <br/>
                 <br/>
                 <br/>
-                <Button variant="contained" type="submit" className={classes.button}>
+                <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
                   Login
                 </Button>
                 <br/>

@@ -11,18 +11,18 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 ReactDOM.render(
   <React.StrictMode>
         <BrowserRouter>
-          <MainCard>
             <ThemeProvider theme={theme}>
               <Switch>
                 <Route exact path="/secure">
                   <App />
                 </Route>
-                <Route path="/">
-                  <Login />
-                </Route>
+                <MainCard>
+                  <Route path="/">
+                    <Login />
+                  </Route>
+                </MainCard>
               </Switch>
             </ThemeProvider>
-          </MainCard>
         </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

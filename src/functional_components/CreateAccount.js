@@ -6,6 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import api from '../util/api';
+import ErrorMessage from './ErrorMessage';
+import { useHistory } from 'react-router';
 
 
 const useStyles = makeStyles(() => ({
@@ -19,7 +22,8 @@ const useStyles = makeStyles(() => ({
     },
     '& .MuiDialog-paper':{
       backgroundColor: '#131416',
-      color: 'white'
+      color: 'white',
+      marginTop: '-80px'
     }
   },
   textField: {
@@ -28,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     color: 'white',
-    backgroundColor: '#292929',
+    backgroundColor: 'black',
     '&:hover': {
       backgroundColor: 'black',
       color: 'white'
@@ -41,25 +45,32 @@ const useStyles = makeStyles(() => ({
       backgroundColor: 'black',
       color: 'white'
     },
+    '&:disabled': {
+      color: 'white',
+      backgroundColor: '#292929'
+    },
   },
   link: {
     textDecoration: 'underline',
     '&:hover': {
       textDecoration: 'none',
       borderBottom: '2px solid #6F0C16'
-    },
+    }
   }
 }));
 
 export default function CreateAccount() {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+  const history = useHistory();
   
   /* State */ 
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+
 
   const handleClickOpen = (e) => {
     e.preventDefault();
@@ -70,13 +81,57 @@ export default function CreateAccount() {
     setOpen(false);
   };
 
+  const validateRequest = (req) =>{
+    console.log(req);
+    for(const prop in req){
+      if(req[prop].length < 1){
+        return false;
+      }
+    }
+    return true;
+  } 
+
+  const displayError = () => {
+    console.log(error);
+    if(error.length > 0 ){
+      return <ErrorMessage error={error}/>
+    }
+  }
+
+  const disabled = () => {
+    return !email || !password || !firstName || !lastName
+   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit form")
-    console.log(email)
-    console.log(firstName)
-    console.log(lastName)
-    console.log(password)
+    const req = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password
+    }
+
+    if(validateRequest(req)){
+      api({
+        method: 'post',
+        url: '/user/createUser',
+        data: req
+      }).then( res => {
+          console.log(res);
+          console.log(res.data)
+          setError('');
+          history.push(
+            '/secure',
+            {token: res.data} 
+          );
+        })
+        .catch((error) => {
+          setError(error.response.data)
+          setEmail('');
+          setPassword('');
+        });
+    }
   }
 
   return (
@@ -86,6 +141,7 @@ export default function CreateAccount() {
       </Link>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="xl"
       className={classes.root}>
+        {displayError()}
         <DialogTitle id="form-dialog-title">Sign Up</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
@@ -133,7 +189,7 @@ export default function CreateAccount() {
             />
             <br/>
             <br/>
-            <Button color="primary" type="submit">
+            <Button color="primary" type="submit" disabled={disabled()} className={classes.button}>
               Sign Up
             </Button>
             <Button onClick={handleClose} color="secondary">

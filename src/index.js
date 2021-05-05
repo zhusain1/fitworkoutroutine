@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainCard from './functional_components/MainCard';
-import Login from './functional_components/Login';
 import './global/global_styles.css';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './global/GlobalTheme'
 import App from './App'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import RenderRoute from './functional_components/RenderRoute';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,11 +15,7 @@ ReactDOM.render(
                 <Route exact path="/secure">
                   <App />
                 </Route>
-                <MainCard>
-                  <Route path="/">
-                    <Login />
-                  </Route>
-                </MainCard>
+                <RenderRoute/>
               </Switch>
             </ThemeProvider>
         </BrowserRouter>

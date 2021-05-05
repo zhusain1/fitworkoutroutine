@@ -68,6 +68,8 @@ const useStyles = makeStyles(() => ({
         }).then( res => {
             setError('');
 
+            sessionStorage.setItem('token', res.data)
+
             history.push(
               '/secure',
               {token: res.data} 
@@ -81,7 +83,6 @@ const useStyles = makeStyles(() => ({
     }
 
     const displayError = () => {
-      console.log(error);
       if(error.length > 0 ){
         return <ErrorMessage error={error}/>
       }

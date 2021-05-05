@@ -92,7 +92,6 @@ export default function CreateAccount() {
   } 
 
   const displayError = () => {
-    console.log(error);
     if(error.length > 0 ){
       return <ErrorMessage error={error}/>
     }
@@ -121,6 +120,9 @@ export default function CreateAccount() {
           console.log(res);
           console.log(res.data)
           setError('');
+          
+          sessionStorage.setItem('token', res.data)
+
           history.push(
             '/secure',
             {token: res.data} 

@@ -4,8 +4,31 @@ let uri = 'http://localhost:8080/';
 let headers = {
     'Content-Type':'application/json'
 }
-
-export default axios.create({
+ let api = axios.create({
     baseURL: uri,
-    heaaders: headers
+    headers: headers
 })
+
+api.interceptors.request.use(
+    config => {
+      const token = sessionStorage.getItem('token');
+  
+      if (token) {
+        config.headers = {
+           'token': token,
+           'Content-Type':'application/json'
+       }
+      } else{
+        config.headers = {
+            'Content-Type':'application/json'
+        }
+      }
+
+      console.log(config);
+      return config;
+    },
+  );
+  
+
+
+export default api;

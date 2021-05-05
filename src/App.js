@@ -8,7 +8,7 @@ function App() {
 
   const validateToken = () => {
 
-    if(typeof location.state === 'undefined'){
+    if(typeof location.state === 'undefined' && location.state){
       return false;
     } else{
       return true;

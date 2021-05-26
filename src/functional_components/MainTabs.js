@@ -1,27 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Create from './Create'
-
-function MainTabs(props) {
-  const { children, value, index } = props;
-
-  return (
-    <div>
-      {value === index && (
-      <div>{children}</div>
-      )}
-    </div>
-  );
-}
-
-MainTabs.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
+import Header from './Header';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(() => ({
   root: { 
@@ -29,32 +12,38 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'black',
     color: 'white',
   },
+  tab: {
+    '& .PrivateTabIndicator-colorSecondary-6': {
+      backgroundColor: '#6F0C16'
+    }
+  },
+  logout: {
+    color: 'white',
+    backgroundColor: '#131416',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: '#292929',
+      color: 'white'
+    },
+  }
 }));
 
-export default function SimpleTabs() {
+export default function MainTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const history = useHistory();
 
+  const routes = ["/createWorkout", "/edit"];
   return (
     <div className={classes.root}>
-      <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="Create" />
-        <Tab label="Edit"/>
+      <Header/>
+      <Tabs value={history.location.pathname !== "/"
+                    ? history.location.pathname
+                    : routes[0]} className={classes.tab} centered>
+        <Tab label="Create" component={Link} to={routes[0]} value={routes[0]}  />
+        <Tab label="Edit" component={Link} to={routes[1]} value={routes[1]} />
         <Tab label="Workouts"/>
       </Tabs>
-      <MainTabs value={value} index={0}>
-          <Create/>
-      </MainTabs>
-      <MainTabs value={value} index={1}>
-        Item Two
-      </MainTabs>
-      <MainTabs value={value} index={2}>
-        Item Three
-      </MainTabs>
     </div>
   );
 }

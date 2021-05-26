@@ -8,18 +8,19 @@ function App() {
 
   const validateToken = () => {
 
-    if(typeof location.state === 'undefined' && location.state){
-      return false;
-    } else{
+    if(sessionStorage.getItem('token')){
       return true;
-    }
+    } else {
+      console.log(location);
+      return false;
+    } 
   }
 
   const validateRoute = () => {
     if(validateToken()){
       return(
         <div className="App">
-            <MainTabs/>
+            <Create/>
         </div>
       )
     } else{

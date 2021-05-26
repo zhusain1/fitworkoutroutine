@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
       backgroundColor: '#131416',
       color: 'white',
       marginTop: '-80px'
-    }
+    },
   },
   textField: {
     minWidth: '250px',
@@ -118,15 +118,12 @@ export default function CreateAccount() {
         data: req
       }).then( res => {
           console.log(res);
-          console.log(res.data)
+          console.log(res.data.token)
           setError('');
           
-          sessionStorage.setItem('token', res.data)
+          sessionStorage.setItem('token', res.data.token)
 
-          history.push(
-            '/secure',
-            {token: res.data} 
-          );
+          history.push('/');
         })
         .catch((error) => {
           setError(error.response.data)

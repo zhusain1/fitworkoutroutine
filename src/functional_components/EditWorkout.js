@@ -1,6 +1,4 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,11 +7,9 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import ReactQuill from 'react-quill';
 import Button from '@material-ui/core/Button';
-import apiVideo from '../util/apiVideo';
 import api from '../util/api';
 import Success from './Success';
 import ErrorMessage from './ErrorMessage';
-import MainTabs from './MainTabs';
 import 'react-quill/dist/quill.snow.css';
 
 const textEditor = {
@@ -27,7 +23,7 @@ const useStyles = makeStyles({
     color: 'white',
     '& .MuiFilledInput-underline::before': {
         borderBottom: '1px solid #F4F3EE'
-    },
+      },
     '& .MuiFilledInput-underline::after': {
       borderBottom: '1px solid #6F0C16'
     },
@@ -81,78 +77,40 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Create() {
+export default function EditWorkout(props) {
+
+  console.log('Edit component called');
 
   const classes = useStyles();
-  const [workoutId, setWorkoutId] = React.useState('');
-  const [workoutName, setWorkoutName] = React.useState('');
-  const [workoutType, setWorkoutType] = React.useState('');
-  const [workoutDescription, setWorkoutDescription] = React.useState('');
-  const [workoutUrl, setWorkoutUrl] = React.useState(null);
+  const workoutId = props.workout.workoutId;
+  const [workoutName, setWorkoutName] = React.useState(props.workout.workoutName);
+  const [workoutType, setWorkoutType] = React.useState(props.workout.workoutType);
+  const [workoutDescription, setWorkoutDescription] = React.useState(props.workout.workoutDescription);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // refactor to createWorkoutVideoCall
-    // Then make a call to vide server to upload video and assoociate with workout
-    if (workoutUrl === null){
-      console.log('Not submitting request, there is no video present')
-      setSuccess(false);
-      setError(true);
-    } else{
-      const workout = {
-        workout_name: workoutName,
-        workout_description: workoutDescription,
-        workout_type: workoutType
-      }
-
-      api({
-        method: 'post',
-        url: '/workout/createWorkout',
-        data: workout
-      }).then( res => {
-        console.log(res.data);
-        setWorkoutId(res.data.workoutId);
-        createVideoCall()
-      })
-      .catch((error) => {
-        console.log(error);
-        setSuccess(false);
-        setError(true);
-      });
+    const workout = {
+      workout_id : workoutId,
+      workout_name : workoutName,
+      workout_description : workoutDescription,
+      workout_type : workoutType
     }
-  }
 
-  const createVideoCall = () => {
-
-    setSuccess(false);
-    var formData = new FormData();
-
-    formData.append('workout_id', workoutId);
-    formData.append('file', workoutUrl);
-
-    console.log(formData)
-
-    apiVideo({
-      method: 'post',
-      url: '/api/upload',
-      data: formData
+    api({
+      method: 'patch',
+      url: '/workout/editWorkout',
+      data: workout
     }).then( res => {
       console.log(res.data);
-      setWorkoutName('');
-      setWorkoutDescription('');
-      setWorkoutType('');
-      setWorkoutUrl(null);
       setSuccess(true);
-      setError(false);
     })
     .catch((error) => {
       console.log(error);
       setSuccess(false);
       setError(true);
-      setWorkoutUrl(null);
     });
 
   }
@@ -168,19 +126,16 @@ export default function Create() {
       );
     } else if(error){
       return(
-        <ErrorMessage error="Could not upload workout"/>
+        <ErrorMessage error="Could not edit workout"/>
       );
     }
   }
 
   return (
     <div>
-      <MainTabs/>
-      <CssBaseline />
       <React.Fragment>
-        <Container maxWidth="md" className={classes.container}>
           {renderSuccess()}
-          <h2> Create Exercise</h2> 
+          <h2> Edit Exercise</h2> 
           <form onSubmit={handleSubmit}>
             <TextField id="title" label="Exercise Title" variant="filled" type="text" value={workoutName}
             color="primary" className={classes.root} onChange={e => setWorkoutName(e.target.value)}
@@ -226,16 +181,12 @@ export default function Create() {
               </div>
             <br/>
             <br/>
-            <input type="file" id="upload" name="filename" onChange={e => setWorkoutUrl(e.target.files[0])}/>
-            <br/>
-            <br/>
             <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
-                Create
+                Edit
             </Button>
           </form>
           <br/>
           <br/>
-        </Container>
       </React.Fragment>
     </div>
   );

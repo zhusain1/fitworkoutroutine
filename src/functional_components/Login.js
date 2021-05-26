@@ -42,6 +42,10 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+const errorStyle = {
+  marginTop : '-42px'
+}
+
  export default function Login() {
     const classes = useStyles();
     const history = useHistory();
@@ -71,8 +75,7 @@ const useStyles = makeStyles(() => ({
             sessionStorage.setItem('token', res.data)
 
             history.push(
-              '/secure',
-              {token: res.data} 
+              '/'
             );
           })
           .catch((error) => {
@@ -94,7 +97,9 @@ const useStyles = makeStyles(() => ({
 
     return (
       <div className="Login">
+        <div className='error' style={errorStyle}>
         {displayError()}
+        </div>
         <img src={logo} alt="logo" width="250" height="140"/>
         <>
             <form onSubmit={handleSubmit}>

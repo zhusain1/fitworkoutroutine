@@ -4,6 +4,7 @@ let uri = 'http://localhost:8080/';
 let headers = {
     'Content-Type':'application/json'
 }
+
  let api = axios.create({
     baseURL: uri,
     headers: headers
@@ -23,12 +24,9 @@ api.interceptors.request.use(
             'Content-Type':'application/json'
         }
       }
-
-      console.log(config);
+      
       return config;
     },
   );
   
-
-
 export default api;

@@ -8,7 +8,6 @@ import FormControl from '@material-ui/core/FormControl';
 import ReactQuill from 'react-quill';
 import Button from '@material-ui/core/Button';
 import api from '../util/api';
-import Success from './Success';
 import ErrorMessage from './ErrorMessage';
 import 'react-quill/dist/quill.snow.css';
 
@@ -23,21 +22,16 @@ const useStyles = makeStyles({
     color: 'white',
     '& .MuiFilledInput-underline::before': {
         borderBottom: '1px solid #F4F3EE'
-      },
+    },
     '& .MuiFilledInput-underline::after': {
       borderBottom: '1px solid #6F0C16'
+    },
+    '& .MuiPaper-root.MuiAlert-filledError': {
+      backgroundColor: '#6F0C16'
     },
     minWidth: '250px',
     height: '15px',
     textAlign: 'left'
-  },
-  container: {
-      marginTop: '32px',
-      paddingTop: '4px',
-      textAlign: 'center',
-      backgroundColor: '#131416',
-      height: 'auto',
-      color: 'white'
   },
   select: {
     color: 'white',
@@ -74,84 +68,58 @@ const useStyles = makeStyles({
     '&:disabled': {
       color: 'white'
     },
-  },
-  secondary: {
-    color: 'white',
-    backgroundColor: 'black',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:focus': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:active': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:disabled': {
-      color: 'white'
-    },
   }
 });
 
-export default function EditWorkout(props) {
+export default function CreateWorkout(props) {
+
   const classes = useStyles();
-  const workoutId = props.workout.workoutId;
-  const [workoutName, setWorkoutName] = React.useState(props.workout.workoutName);
-  const [workoutType, setWorkoutType] = React.useState(props.workout.workoutType);
-  const [workoutDescription, setWorkoutDescription] = React.useState(props.workout.workoutDescription);
-  const [success, setSuccess] = React.useState(false);
+  const [workoutName, setWorkoutName] = React.useState('');
+  const [workoutType, setWorkoutType] = React.useState('');
+  const [workoutDescription, setWorkoutDescription] = React.useState('');
   const [error, setError] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     const workout = {
-      workout_id : workoutId,
-      workout_name : workoutName,
-      workout_description : workoutDescription,
-      workout_type : workoutType
+      workout_name: workoutName,
+      workout_description: workoutDescription,
+      workout_type: workoutType
     }
 
     api({
-      method: 'patch',
-      url: '/workout/editWorkout',
+      method: 'post',
+      url: '/workout/createWorkout',
       data: workout
     }).then( res => {
       console.log(res.data);
-      setSuccess(true);
+      props.callback(res.data.workoutId);
     })
     .catch((error) => {
       console.log(error);
-      setSuccess(false);
       setError(true);
     });
-
   }
 
   const disabled = () => {
     return !workoutName || !workoutDescription || !workoutType
   }
 
-  const renderSuccess = () => {
-    if(success){
+  const renderError = () => {
+    if(error){
       return(
-        <Success/>
-      );
-    } else if(error){
-      return(
-        <ErrorMessage error="Could not edit workout"/>
-      );
+        <>
+          <ErrorMessage error="Exercise already created"/>
+        </>);
     }
   }
 
   return (
     <div>
       <React.Fragment>
-          {renderSuccess()}
-          <h2> Edit Exercise</h2> 
+          {renderError()}
+          <h2> Create Exercise</h2> 
           <form onSubmit={handleSubmit}>
             <TextField id="title" label="Exercise Title" variant="filled" type="text" value={workoutName}
             color="primary" className={classes.root} onChange={e => setWorkoutName(e.target.value)}
@@ -198,14 +166,9 @@ export default function EditWorkout(props) {
             <br/>
             <br/>
             <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
-              Edit
-            </Button>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <Button variant="contained" className={classes.secondary} onClick={() => window.location.reload()}>
-              Back
+                Create
             </Button>
           </form>
-          <br/>
           <br/>
       </React.Fragment>
     </div>

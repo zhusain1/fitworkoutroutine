@@ -88,6 +88,7 @@ export default function Edit() {
   const displayList = () => {
     return (
         <div className="list">
+          <h2> Find Exercise To Edit </h2> 
             <List className={classes.list}>
                 {workouts.map((workout) =>
                     <ListItem key={workout.workoutId}>
@@ -115,7 +116,6 @@ export default function Edit() {
         <React.Fragment>
         <CssBaseline />
         <Container maxWidth="md" className={classes.container}>
-            <h2> Find Exercise To Edit </h2> 
             {chooseDisplay()}
         </Container>
         </React.Fragment>

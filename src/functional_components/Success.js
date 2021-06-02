@@ -28,7 +28,7 @@ export default function Success() {
     <div>
       <Snackbar open={open} autoHideDuration={10000} onClose={handleClose} className={classes.root}>
         <Alert onClose={handleClose} severity="success" variant="filled">
-          Exercise Created
+          Exercise Updated
         </Alert>
       </Snackbar>
     </div>

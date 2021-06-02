@@ -33,7 +33,7 @@ export default function MainTabs() {
 
   const history = useHistory();
 
-  const routes = ["/createWorkout", "/edit"];
+  const routes = ["/createWorkout", "/edit", "/workouts"];
   return (
     <div className={classes.root}>
       <Header/>
@@ -42,7 +42,7 @@ export default function MainTabs() {
                     : routes[0]} className={classes.tab} centered>
         <Tab label="Create" component={Link} to={routes[0]} value={routes[0]}  />
         <Tab label="Edit" component={Link} to={routes[1]} value={routes[1]} />
-        <Tab label="Workouts"/>
+        <Tab label="Workouts" component={Link} to={routes[2]} value={routes[2]}/>
       </Tabs>
     </div>
   );

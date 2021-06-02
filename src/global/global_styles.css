@@ -13,3 +13,8 @@ input[type=file]::file-selector-button {
     cursor: pointer;
     width: 120px;
 }
+
+.links:hover{
+    border-bottom: 2px solid #6F0C16;
+    cursor: pointer;
+}

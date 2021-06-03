@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import MainTabs from  './MainTabs';
 import api from '../util/api'
 import EditWorkout from './EditWorkout';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,14 +13,6 @@ const useStyles = makeStyles({
     minWidth: '250px',
     height: '15px',
     textAlign: 'left',  },
-  container: {
-      marginTop: '32px',
-      paddingTop: '4px',
-      textAlign: 'center',
-      backgroundColor: '#131416',
-      height: 'auto',
-      color: 'white',
-  },
   list: {
     fontSize: 18,
   }
@@ -112,12 +101,8 @@ export default function Edit() {
   
   return (
     <div>
-        <MainTabs/>
         <React.Fragment>
-        <CssBaseline />
-        <Container maxWidth="md" className={classes.container}>
-            {chooseDisplay()}
-        </Container>
+          {chooseDisplay()}
         </React.Fragment>
     </div>
   );

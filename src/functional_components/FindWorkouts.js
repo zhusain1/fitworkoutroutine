@@ -5,9 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import MainTabs from './MainTabs';
-import Container from '@material-ui/core/Container';
-import CssBaseline from  '@material-ui/core/CssBaseline';
 import api from '../util/api';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -33,14 +30,6 @@ const useStyles = makeStyles({
     minWidth: '250px',
     height: '15px',
     textAlign: 'left'
-  },
-  container: {
-      marginTop: '32px',
-      paddingTop: '4px',
-      textAlign: 'center',
-      backgroundColor: '#131416',
-      height: 'auto',
-      color: 'white'
   },
   select: {
     color: 'white',
@@ -213,11 +202,7 @@ export default function FindWorkouts() {
 
   return (
     <div>
-        <MainTabs/>
-        <CssBaseline />
-        <Container maxWidth="md" className={classes.container}>
-            {chooseExercise()}
-        </Container>
+      {chooseExercise()}
     </div>
   );
 }

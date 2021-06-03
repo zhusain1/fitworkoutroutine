@@ -15,7 +15,7 @@ export default function RenderRoute (){
                 <Route exact path="/edit/workout" component={EditWorkout}/>
                 <Route exact path="/workouts" component={FindWorkouts}/>
                 <Route exact path="/">
-                    <Create />
+                    <FindWorkouts />
                 </Route>
             </>
         );

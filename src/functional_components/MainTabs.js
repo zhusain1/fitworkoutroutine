@@ -33,6 +33,10 @@ export default function MainTabs() {
 
   const history = useHistory();
 
+  if(history.location.pathname !== "/workouts" && sessionStorage.getItem('workout')){
+    sessionStorage.removeItem('workout');
+  }
+
   const routes = ["/createWorkout", "/edit", "/workouts"];
   return (
     <div className={classes.root}>

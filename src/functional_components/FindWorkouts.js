@@ -101,9 +101,8 @@ const useStyles = makeStyles({
 
 export default function FindWorkouts() {
   const [workoutType, setWorkoutType] = React.useState("");
-  const [display, setDisplay] = React.useState(false);
   const [workouts, setWorkouts] = React.useState([]);
-  const [chosenWorkout, setChosenWorkout] = React.useState({});
+  const [display, setDisplay] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -130,10 +129,8 @@ export default function FindWorkouts() {
   }
 
   const displayExercise = (workoutId) => {
+    sessionStorage.setItem('workout', JSON.stringify(selectWorkoutById(workoutId)));
     setDisplay(true);
-    setChosenWorkout({
-      workout : selectWorkoutById(workoutId)
-    });  
   }
 
   const selectWorkoutById = (id) => {
@@ -145,7 +142,13 @@ export default function FindWorkouts() {
   }
 
   const chooseExercise = () => {
-    if(!display){
+    if(sessionStorage.getItem('workout') || display){
+      let savedWorkout = JSON.parse(sessionStorage.getItem('workout'));
+      return(
+        <React.Fragment>          
+            <Exercise workout = {savedWorkout}/>
+        </React.Fragment>);
+    } else {
       return (
         <React.Fragment>          
           <h2> Find Workout</h2> 
@@ -183,13 +186,7 @@ export default function FindWorkouts() {
           <br/>
         </React.Fragment>
       );
-    } else{
-      console.log(chosenWorkout);
-      return(
-      <React.Fragment>          
-          <Exercise workout = {chosenWorkout}/>
-      </React.Fragment>);
-    }
+    } 
   }
 
   const displayExercises = () => {

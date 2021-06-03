@@ -33,11 +33,11 @@ export default function MainTabs() {
 
   const history = useHistory();
 
-  if((history.location.pathname !== "/" && history.location.pathname !== "/workouts") && sessionStorage.getItem('workout')){
+  if((history.location.pathname !== "/" && history.location.pathname !== "/workouts" && history.location.pathname !== "/user/workouts") && sessionStorage.getItem('workout')){
     sessionStorage.removeItem('workout');
   }
 
-  const routes = ["/workouts", "/createWorkout", "/edit"];
+  const routes = ["/workouts", "/user/workouts", "/createWorkout", "/edit"];
   return (
     <div className={classes.root}>
       <Header/>
@@ -45,8 +45,9 @@ export default function MainTabs() {
                     ? history.location.pathname
                     : routes[0]} className={classes.tab} centered>
         <Tab label="Workouts" component={Link} to={routes[0]} value={routes[0]}  />
-        <Tab label="Create" component={Link} to={routes[1]} value={routes[1]} />
-        <Tab label="Edit" component={Link} to={routes[2]} value={routes[2]}/>
+        <Tab label="My Workouts" component={Link} to={routes[1]} value={routes[1]}  />
+        <Tab label="Create" component={Link} to={routes[2]} value={routes[2]} />
+        <Tab label="Edit" component={Link} to={routes[3]} value={routes[3]}/>
       </Tabs>
     </div>
   );

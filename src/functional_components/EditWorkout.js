@@ -138,7 +138,7 @@ export default function EditWorkout(props) {
   const renderSuccess = () => {
     if(success){
       return(
-        <Success/>
+        <Success message='Exercise updated'/>
       );
     } else if(error){
       return(

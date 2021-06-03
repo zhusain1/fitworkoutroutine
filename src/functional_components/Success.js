@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
     }
   }));
 
-export default function Success() {
+export default function Success(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -28,7 +28,7 @@ export default function Success() {
     <div>
       <Snackbar open={open} autoHideDuration={10000} onClose={handleClose} className={classes.root}>
         <Alert onClose={handleClose} severity="success" variant="filled">
-          Exercise Updated
+          {props.message}
         </Alert>
       </Snackbar>
     </div>

@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 export default function CreateWorkout(props) {
 
   const classes = useStyles();
-  const [workoutId, setWorkoutId] = React.useState(props.workout_id);
+  const [workoutId] = React.useState(props.workout_id);
   const [workoutUrl, setWorkoutUrl] = React.useState(null);
   const [error, setError] = React.useState(false);  
 

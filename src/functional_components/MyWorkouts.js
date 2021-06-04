@@ -57,24 +57,31 @@ export default function MyWorkouts() {
                 <Exercise workout = {savedWorkout}/>
             </React.Fragment>);
         } else {
-          return (
-            <div>
-                <h2> My Workouts </h2>
-                <Grid container justify = "center">
-                <div>
-                    <List className={classes.list}>
-                        {workouts.map((workout) =>
-                            <ListItem key={workout.workoutId}>
-                                <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
-                                    {workout.workoutName}
-                                </Link>
-                            </ListItem>
-                        )}
-                    </List>
-                </div>
-                </Grid>
-            </div>
-          );
+            if(workouts.length > 0){
+                return (
+                    <div>
+                        <h2> My Workouts </h2>
+                        <Grid container justify = "center">
+                        <div>
+                            <List className={classes.list}>
+                                {workouts.map((workout) =>
+                                    <ListItem key={workout.workoutId}>
+                                        <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
+                                            {workout.workoutName}
+                                        </Link>
+                                    </ListItem>
+                                )}
+                            </List>
+                        </div>
+                        </Grid>
+                    </div>);
+            } else{
+                return(
+                    <h2> My Workouts </h2>
+                    no workouts chosen
+                );
+            }
+          
         } 
       }
     

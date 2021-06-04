@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from  '@material-ui/core/CssBaseline';
 import MainTabs from './MainTabs';
+import ResetPassword from './ResetPassword';
 
 const useStyles = makeStyles({
     container: {
@@ -45,9 +46,8 @@ export default function RenderRoute (){
     } else{
         return(
             <MainCard>
-                <Route path="/">
-                    <Login />
-                </Route>
+                <Route exact path="/forgotpassword" component={ResetPassword}/> 
+                <Route exact path="/" component={Login}/>
             </MainCard>
         );
     }

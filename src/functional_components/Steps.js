@@ -6,7 +6,6 @@ import StepLabel from '@material-ui/core/StepLabel';
 import CreateWorkout from './CreateWorkout';
 import CreateVideo from './CreateVideo';
 
-
 const useStyles = makeStyles(() => ({
   steps: {
     width: '100%',

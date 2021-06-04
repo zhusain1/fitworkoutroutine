@@ -57,12 +57,14 @@ export default function MyWorkouts() {
                 <Exercise workout = {savedWorkout}/>
             </React.Fragment>);
         } else {
+            console.log(workouts)
             if(workouts.length > 0){
                 return (
                     <div>
                         <h2> My Workouts </h2>
                         <Grid container justify = "center">
                         <div>
+                            {workouts.length > 0 && 
                             <List className={classes.list}>
                                 {workouts.map((workout) =>
                                     <ListItem key={workout.workoutId}>
@@ -71,14 +73,16 @@ export default function MyWorkouts() {
                                         </Link>
                                     </ListItem>
                                 )}
-                            </List>
+                            </List>}
                         </div>
                         </Grid>
                     </div>);
             } else{
                 return(
-                    <h2> My Workouts </h2>
-                    no workouts chosen
+                    <>
+                        <h2> My Workouts </h2>
+                        no workouts chosen
+                    </>
                 );
             }
           

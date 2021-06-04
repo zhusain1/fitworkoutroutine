@@ -9,6 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router';
 import api from '../util/api'
 import ErrorMessage from './ErrorMessage';
+import logo from '../img/logo-transparent.png'
+
 
 const useStyles = makeStyles(() => ({
     steps: {
@@ -243,6 +245,7 @@ export default function ResetPassword() {
 
   return (
     <div className={classes.steps}>
+      <img src={logo} alt="logo" width="250" height="140"/>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};

@@ -135,9 +135,17 @@ export default function CreateAccount() {
 
   return (
     <div>
-      <Link href="/" onClick={handleClickOpen} className={classes.link}>
-          Join Now
-      </Link>
+      <div className="footerlinks" style={{marginLeft:'45px'}}>
+        <small>
+          <Link href="/" onClick={handleClickOpen} className={classes.link}>
+              Join Now
+          </Link>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Link href="/forgotpassword" className={classes.link}>
+            Forgot Password
+          </Link>
+        </small>
+      </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="xl"
       className={classes.root}>
         {displayError()}

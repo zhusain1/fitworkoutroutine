@@ -1,6 +1,6 @@
 import MainCard from './MainCard';
 import Login from './Login';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Create from './Create';
 import Edit from './Edit';
 import EditWorkout from './EditWorkout';
@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from  '@material-ui/core/CssBaseline';
 import MainTabs from './MainTabs';
 import ResetPassword from './ResetPassword';
+import Error from './Error'
 
 const useStyles = makeStyles({
     container: {
@@ -31,14 +32,17 @@ export default function RenderRoute (){
                 <CssBaseline />
                     <MainTabs/>
                     <Container maxWidth="md" className={classes.container}>
-                        <Route exact path="/createWorkout" component={Create}/>
-                        <Route exact path="/edit" component={Edit}/>
-                        <Route exact path="/edit/workout" component={EditWorkout}/>
-                        <Route exact path="/workouts" component={FindWorkouts}/>
-                        <Route exact path="/user/workouts" component={MyWorkouts}/>
-                        <Route exact path="/">
-                            <FindWorkouts />
-                        </Route>
+                        <Switch>
+                            <Route exact path="/createWorkout" component={Create}/>
+                            <Route exact path="/edit" component={Edit}/>
+                            <Route exact path="/edit/workout" component={EditWorkout}/>
+                            <Route exact path="/workouts" component={FindWorkouts}/>
+                            <Route exact path="/user/workouts" component={MyWorkouts}/>
+                            <Route exact path="/">
+                                <FindWorkouts />
+                            </Route>
+                            <Route component={Error}/>
+                        </Switch>
                     </Container>
                 
             </>
@@ -46,8 +50,11 @@ export default function RenderRoute (){
     } else{
         return(
             <MainCard>
-                <Route exact path="/forgotpassword" component={ResetPassword}/> 
-                <Route exact path="/" component={Login}/>
+                <Switch>
+                    <Route exact path="/" component={Login}/>
+                    <Route exact path="/forgotpassword" component={ResetPassword}/> 
+                    <Route component={Error}/>
+                </Switch>
             </MainCard>
         );
     }

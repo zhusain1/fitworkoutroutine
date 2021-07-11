@@ -81,7 +81,10 @@ export default function MyWorkouts() {
                 return(
                     <>
                         <h2> My Workouts </h2>
-                        no workouts chosen
+                        No workouts chosen
+                        <br/>
+                        <br/>
+                        <br/>
                     </>
                 );
             }

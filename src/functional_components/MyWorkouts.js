@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Exercise from './Exercise';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const link = {
@@ -27,7 +28,9 @@ export default function MyWorkouts() {
             method: 'get',
             url: '/workout/getWorkoutsFromUser',
         }).then( res => {
-            setWorkouts(res.data)
+            setTimeout( () => {
+                setWorkouts(res.data)
+              }, 1200);
         })
         .catch((error) => {
             console.log(error);
@@ -38,6 +41,7 @@ export default function MyWorkouts() {
 
     const displayExercise = (workoutId) => {
         sessionStorage.setItem('workout', JSON.stringify(selectWorkoutById(workoutId)));
+        sessionStorage.setItem('path', window.location.pathname);
         setDisplay(true);
     }
 
@@ -50,7 +54,7 @@ export default function MyWorkouts() {
     }
 
     const chooseExercise = () => {
-        if(sessionStorage.getItem('workout') || display){
+        if((sessionStorage.getItem('path') === window.location.pathname && sessionStorage.getItem('workout')) || display){
           let savedWorkout = JSON.parse(sessionStorage.getItem('workout'));
           return(
             <React.Fragment>          
@@ -77,18 +81,20 @@ export default function MyWorkouts() {
                         </div>
                         </Grid>
                     </div>);
-            } else{
-                return(
-                    <>
-                        <h2> My Workouts </h2>
-                        No workouts chosen
-                        <br/>
-                        <br/>
-                        <br/>
-                    </>
-                );
-            }
-          
+            } 
+            return(
+                <>
+                    <h2> My Workouts </h2>
+                    No workouts chosen
+                    <br/>
+                    <br/>
+                    <CircularProgress color="secondary" />
+                    <br/>
+                    <br/>
+                    <br/>
+                </>
+            );
+            
         } 
       }
     

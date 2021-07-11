@@ -56,6 +56,7 @@ export default function Exercise(props) {
 
   const handleBack = () => {
     sessionStorage.removeItem('workout');
+    sessionStorage.removeItem('path');
     window.location.reload()
   }
 

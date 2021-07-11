@@ -119,6 +119,7 @@ export default function FindWorkouts() {
 
   const displayExercise = (workoutId) => {
     sessionStorage.setItem('workout', JSON.stringify(selectWorkoutById(workoutId)));
+    sessionStorage.setItem('path', window.location.pathname);
     setDisplay(true);
   }
 
@@ -131,7 +132,7 @@ export default function FindWorkouts() {
   }
 
   const chooseExercise = () => {
-    if(sessionStorage.getItem('workout') || display){
+    if((sessionStorage.getItem('path') === window.location.pathname && sessionStorage.getItem('workout')) || display){
       let savedWorkout = JSON.parse(sessionStorage.getItem('workout'));
       return(
         <React.Fragment>          

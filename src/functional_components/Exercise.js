@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
+import Skeleton from '@material-ui/lab/Skeleton';
 import api from '../util/api';
 import Success from './Success';
 
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
 export default function Exercise(props) {
 
   const [success, setSuccess] = React.useState("");
+  const [renderVideo, setRenderVideo] = React.useState(false);
 
 
   const renderSuccess = () => {
@@ -101,6 +103,23 @@ export default function Exercise(props) {
     });
   }
 
+  const loadVideo = () => {
+    setTimeout( () => {
+       setRenderVideo(true);
+    }, 2000);
+
+    if(renderVideo){
+      return <Stream controls src={props.workout.workoutUrl} />
+    }else{
+      return (
+          <Skeleton variant="rect" width="100%">
+            <div style={{ paddingTop: '50%' }} />
+        </Skeleton>
+      );
+    }
+  }
+
+
   const classes = useStyles();
   return (
     <div>
@@ -122,7 +141,7 @@ export default function Exercise(props) {
       <br/>
       <br/>
       <br/>
-      <Stream controls src={props.workout.workoutUrl} />
+      {loadVideo()}
       <small> Created by: {props.workout.email} </small>
       <br/>
     </div>

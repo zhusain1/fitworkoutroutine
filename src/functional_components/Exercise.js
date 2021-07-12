@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import { Stream } from "@cloudflare/stream-react";
+import ReactHlsPlayer from 'react-hls-player';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 });
 
 export default function Exercise(props) {
-  
+
   const [success, setSuccess] = React.useState("");
 
   const renderSuccess = () => {
@@ -100,6 +100,17 @@ export default function Exercise(props) {
     });
   }
 
+  const renderVideo = () => {
+    return (
+      <ReactHlsPlayer
+          src= {`https://videodelivery.net/${props.workout.workoutUrl}/manifest/video.m3u8`}
+          autoPlay={false}
+          controls={true}
+          width="100%"
+          height="auto"
+        />);
+  }
+
   const classes = useStyles();
   return (
     <div>
@@ -121,7 +132,7 @@ export default function Exercise(props) {
       <br/>
       <br/>
       <br/>
-      <Stream controls src={props.workout.workoutUrl} />
+      {renderVideo()}
       <small> Created by: {props.workout.email} </small>
       <br/>
     </div>

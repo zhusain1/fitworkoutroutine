@@ -7,6 +7,8 @@ import EditWorkout from './EditWorkout';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Skeleton from '@material-ui/lab/Skeleton';
+
 
 const useStyles = makeStyles({
   root: {
@@ -50,7 +52,7 @@ export default function Edit() {
             <EditWorkout workout = {workout} />
         );
     } else{
-        return displayList();
+        return renderSkeleton();
     }
   }
 
@@ -67,12 +69,35 @@ export default function Edit() {
         method: 'get',
         url: '/workout/userWorkouts',
     }).then( res => {
+      setTimeout( () => {
         setWorkouts(res.data)
+      }, 1200);
     })
     .catch((error) => {
         console.log(error);
     });
   }, []);
+
+  const renderSkeleton = () => {
+    console.log(workouts);
+    if(workouts.length < 1){
+      return(
+        <div>
+          <br/>
+          <br/>
+          <Skeleton animation="wave" />
+          <br/>
+          <Skeleton animation="wave" />
+          <br/>
+          <Skeleton animation="wave" />
+          <br/>
+        </div>
+      );
+    }
+    else{
+      return displayList()
+    }
+  }
 
   const displayList = () => {
     return (

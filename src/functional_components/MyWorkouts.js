@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Exercise from './Exercise';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const link = {
     color: 'white',
@@ -85,8 +85,10 @@ export default function MyWorkouts() {
             return(
                 <>
                     <h2> My Workouts </h2>
-                    No workouts chosen
                     <br/>
+                    <Skeleton animation="wave" />
+                    <br/>
+                    <Skeleton animation="wave" />
                     <br/>
                     <CircularProgress color="secondary" />
                     <br/>

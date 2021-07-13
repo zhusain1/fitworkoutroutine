@@ -135,13 +135,13 @@ export default function CreateAccount() {
 
   return (
     <div>
-      <div className="footerlinks" style={{marginLeft:'45px'}}>
+      <div className="footerlinks">
         <small>
         <Box component="div" display="inline">
             <Link href="/" onClick={handleClickOpen} className={classes.link}>
-                Join Now
+                Create Account
             </Link>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <Link href="/forgotpassword" className={classes.link}>
               Forgot Password
             </Link>

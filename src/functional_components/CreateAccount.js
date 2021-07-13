@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
 import { useHistory } from 'react-router';
-
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -137,13 +137,15 @@ export default function CreateAccount() {
     <div>
       <div className="footerlinks" style={{marginLeft:'45px'}}>
         <small>
-          <Link href="/" onClick={handleClickOpen} className={classes.link}>
-              Join Now
-          </Link>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Link href="/forgotpassword" className={classes.link}>
-            Forgot Password
-          </Link>
+        <Box component="div" display="inline">
+            <Link href="/" onClick={handleClickOpen} className={classes.link}>
+                Join Now
+            </Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Link href="/forgotpassword" className={classes.link}>
+              Forgot Password
+            </Link>
+          </Box>
         </small>
       </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="xl"

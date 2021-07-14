@@ -30,7 +30,6 @@ const useStyles = makeStyles({
       backgroundColor: '#6F0C16'
     },
     minWidth: '250px',
-    height: '15px',
     textAlign: 'left'
   },
   select: {

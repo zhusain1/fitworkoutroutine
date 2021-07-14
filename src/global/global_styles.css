@@ -27,12 +27,3 @@ input[type=file]::file-selector-button {
     }
 }
 
-
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) {
-    .MuiFilledInput-underline::before, .MuiFilledInput-underline::after{
-        bottom: -16px !important;
-    }
-
-}

@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
       borderBottom: '1px solid #6F0C16'
     },
     minWidth: '250px',
-    height: '25px',
+    height: '35px',
     textAlign: 'left'
   },
   button: {

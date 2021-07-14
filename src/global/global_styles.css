@@ -33,6 +33,6 @@ input[type=file]::file-selector-button {
   and (max-device-width: 1024px) {
     .MuiFilledInput-input {
         height: 50px !important;
-        padding: 27px 12px 10px;
+        padding: 27px 12px 10px !important;
     }
 }

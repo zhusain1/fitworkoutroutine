@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -22,6 +22,25 @@ export default function ExerciseAccordian(props) {
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState(false);
+
+  useEffect(() => {
+
+    const request = {
+      email: props.workout.email,
+      workout_id: props.workout.workoutId
+    }
+
+    api({
+        method: 'post',
+        url: '/workout/workoutFromUser',
+        data: request
+    }).then( res => {
+      setChecked(res.data)
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+    },[ props.workout.email,  props.workout.workoutId]);
 
   const saveWorkout = (checked) => {
 

@@ -29,7 +29,8 @@ const useStyles = makeStyles(() => ({
       '@media (max-device-width: 480px)': {
         margin: 'auto',
         float: 'none',
-        display: 'block'
+        display: 'block',
+        marginRight: '12px'
       },
     }
   }));

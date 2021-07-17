@@ -5,7 +5,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactHtmlParser from 'react-html-parser';
-import ReactHlsPlayer from 'react-hls-player';
+import { Stream } from "@cloudflare/stream-react";
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import api from '../util/api';
@@ -97,14 +97,7 @@ export default function ExerciseAccordian(props) {
         </AccordionDetails>
       </Accordion>
         <br/>
-        <ReactHlsPlayer
-                src= {`https://videodelivery.net/${props.workout.workoutUrl}/manifest/video.m3u8`}
-                autoPlay={false}
-                controls={true}
-                width="100%"
-                height="auto"
-        />
-        
+        <Stream controls src={props.workout.workoutUrl} />
         <br/>
     </div>
   );

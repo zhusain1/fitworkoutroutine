@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import apiVideo from '../util/apiVideo';
 import ErrorMessage from './ErrorMessage';
+import NotificationContext from '../global/NotificationContext';
 
 const useStyles = makeStyles({
   button: {
@@ -32,6 +33,7 @@ export default function CreateWorkout(props) {
   const [workoutId] = React.useState(props.workout_id);
   const [workoutUrl, setWorkoutUrl] = React.useState(null);
   const [error, setError] = React.useState(false);  
+  const { setNotification } = useContext(NotificationContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,6 +64,7 @@ export default function CreateWorkout(props) {
       console.log(res.data);
       setWorkoutUrl(null);
       setError(false);
+      setNotification(workoutId)
       props.callback();
     })
     .catch((error) => {

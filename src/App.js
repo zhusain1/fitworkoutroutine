@@ -1,6 +1,5 @@
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
-import MainTabs from './functional_components/MainTabs';
 
 function App() {
   const history = useHistory();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -7,6 +7,9 @@ import CreateAccount from './CreateAccount';
 import { useHistory } from 'react-router';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,6 +22,9 @@ const useStyles = makeStyles(() => ({
     },
     minWidth: '250px',
     textAlign: 'left'
+  },
+  icon: {
+    color: 'white'
   },
   button: {
     color: 'white',
@@ -48,12 +54,25 @@ const errorStyle = {
  export default function Login() {
     const classes = useStyles();
     const history = useHistory();
+    const inputRef = useRef();
 
 
     /* State */ 
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [error, setError] = React.useState("");
+    const [togglePassword, setTogglePassword] = React.useState(false);
+
+    const handleTogglePassword = (e) => {
+      e.preventDefault();
+      setTogglePassword(!togglePassword);
+
+      if(togglePassword){
+        inputRef.current.type = "password"
+      } else{
+        inputRef.current.type = "text"
+      }
+    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -94,6 +113,9 @@ const errorStyle = {
      return !email || !password
     }
 
+    let visibility =  !togglePassword ? <VisibilityIcon onClick={handleTogglePassword}/>  
+    : <VisibilityIconOff onClick={handleTogglePassword}/>
+
     return (
       <div className="Login">
         <div className='error' style={errorStyle}>
@@ -117,12 +139,16 @@ const errorStyle = {
                 <br/>
                 <TextField id="password" label="password" variant="filled" type="password" value={password} 
                 onChange={e => setPassword(e.target.value)}
-                color="primary" className={classes.root}
+                color="primary" className={classes.root} inputRef={inputRef}
                     inputProps={{
-                        className: classes.root
+                      className: classes.root
                     }}
                     InputLabelProps={{
                       className: classes.root
+                    }}
+                    InputProps={{
+                      className: classes.icon,
+                      endAdornment: visibility
                     }}
                 />
                 <br/>

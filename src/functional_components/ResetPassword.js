@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -10,6 +10,8 @@ import { useHistory } from 'react-router';
 import api from '../util/api'
 import ErrorMessage from './ErrorMessage';
 import logo from '../img/logo-transparent.png'
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
 
 
 const useStyles = makeStyles(() => ({
@@ -47,6 +49,9 @@ const useStyles = makeStyles(() => ({
         minWidth: '250px',
         textAlign: 'left'
     },
+    icon: {
+      color: 'white'
+    },
     button: {
         color: 'white',
         backgroundColor: '#292929',
@@ -73,6 +78,8 @@ function getSteps() {
 }
 
 export default function ResetPassword() {
+  const inputRef = useRef();
+
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [email, setEmail] = React.useState('');
@@ -81,6 +88,18 @@ export default function ResetPassword() {
   const [error, setError] = React.useState('');
   const steps = getSteps();
   const history = useHistory();
+  const [togglePassword, setTogglePassword] = React.useState(false);
+
+  const handleTogglePassword = (e) => {
+    e.preventDefault();
+    setTogglePassword(!togglePassword);
+
+    if(togglePassword){
+      inputRef.current.type = "password"
+    } else{
+      inputRef.current.type = "text"
+    }
+  }
 
   const renderError = () => {
       if(error.length > 0){
@@ -203,12 +222,16 @@ export default function ResetPassword() {
                     <h2> Reset Password</h2>
                     <TextField id="reset_password" label="password" variant="filled" type="password" value={password}
                         onChange={e => setPassword(e.target.value)}
-                        color="primary" className={classes.root}
+                        color="primary" className={classes.root} inputRef={inputRef}
                             inputProps={{
                                 className: classes.root
                             }}
                             InputLabelProps={{
                             className: classes.root
+                            }}
+                            InputProps={{
+                              className: classes.icon,
+                              endAdornment: visibility
                             }}
                     />
                     <br/>
@@ -222,6 +245,9 @@ export default function ResetPassword() {
         return 'Unknown step';
     }
   }
+
+  let visibility =  !togglePassword ? <VisibilityIcon onClick={handleTogglePassword}/>  
+    : <VisibilityIconOff onClick={handleTogglePassword}/>
 
   const handleSubmitInitiate = (e) => {
     e.preventDefault();

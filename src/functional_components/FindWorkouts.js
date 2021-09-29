@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import Exercise from './Exercise';
 
 const link = {
@@ -84,8 +85,16 @@ const useStyles = makeStyles({
     },
     '&:disabled': {
       color: 'white'
-    },
-  }
+    }
+  },
+  container: {
+    marginTop: '8px',
+    textAlign: 'left',
+    width: '300px',
+    backgroundColor: '#262626',
+    height: 'auto',
+    color: 'white'
+}
 });
 
 export default function FindWorkouts() {
@@ -182,19 +191,27 @@ export default function FindWorkouts() {
   const displayExercises = () => {
     if(workouts.length > 0){
       return(
-        <Grid container justify = "center">
-          <div>
-              <List className={classes.list}>
-                  {workouts.map((workout) =>
-                      <ListItem key={workout.workoutId}>
-                         <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
-                            {workout.workoutName}
-                          </Link>
-                      </ListItem>
-                  )}
-              </List>
-          </div>
-        </Grid>
+          <Grid container justify = "center">
+            <div>
+                <List className={classes.list}>
+                    {workouts.map((workout) =>
+                        <ListItem key={workout.workoutId}>
+                          <Container maxWidth="md" className={classes.container}>
+                            <br/>
+                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="240" height="240"/>
+                            <br/>
+                            <br/>
+                            <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
+                                {workout.workoutName}
+                            </Link>
+                            <br/>
+                            <br/>
+                          </Container>
+                        </ListItem>
+                    )}
+                </List>
+            </div>
+          </Grid>
       );
     } 
   }

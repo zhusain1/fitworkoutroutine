@@ -139,8 +139,9 @@ export default function CreateAccount() {
           setError('');
           
           sessionStorage.setItem('token', res.data.token)
+          sessionStorage.setItem('requiresPayment', true)
 
-          history.push('/');
+          history.push('/payment');
         })
         .catch((error) => {
           setError(error.response.data)
@@ -168,10 +169,10 @@ export default function CreateAccount() {
           </Box>
         </small>
       </div>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="xl"
+      <Dialog open={open} onClose={handleClose} aria-labelledby="sign_up" maxWidth="xl"
       className={classes.root}>
         {displayError()}
-        <DialogTitle id="form-dialog-title">Sign Up</DialogTitle>
+        <DialogTitle id="sign_up">Sign Up</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
             <TextField id="first_name" label="first name" variant="filled" type="text" color="primary"

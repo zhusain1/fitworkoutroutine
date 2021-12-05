@@ -27,11 +27,38 @@ input[type=file]::file-selector-button {
     color: #6F0C16;
 }
 
+.MuiMenu-list {
+    background-color: #131416;
+    color: white;
+}
+
+.StripeElement{
+    width: 350px;
+    margin: 0 auto;
+}
+
+.cardNumber, .expirationDate, .cvc{
+    border-bottom: 1px solid white;
+}
+
 @media only screen 
   and (min-device-width: 320px)
   and (max-device-width: 568px) {
-    .MuiTab-root{
-        font-size: 10px !important;
+    .StripeElement{
+        width: auto;
+        margin: auto;
+    }
+
+    .membership{
+        max-width: 250px;
+        padding: 4px;
+        font-size: 14px;
+    }
+    
+    img.logo{
+        width: 168px;
     }
 }
+
+
 

@@ -14,6 +14,8 @@ import MainTabs from './MainTabs';
 import ResetPassword from './ResetPassword';
 import Error from './Error'
 import NotificationContext from '../global/NotificationContext';
+import PaymentForm from './PaymentForm';
+import Membership from './Membership';
 
 const useStyles = makeStyles({
     container: {
@@ -29,6 +31,17 @@ const useStyles = makeStyles({
 export default function RenderRoute (){
     const classes = useStyles();
     const [notification, setNotification] = useState("");
+    if(sessionStorage.getItem('token') && sessionStorage.getItem('requiresPayment')){
+        return(
+            <MainCard> 
+                <Switch>               
+                    <Route exact path="/payment" component={PaymentForm}/> 
+                    <Route exact path="/" component={PaymentForm}/> 
+                    <Route component={Error}/>
+                </Switch>
+            </MainCard>
+        );
+    }
     if(sessionStorage.getItem('token')){
         return (
             <>
@@ -42,6 +55,7 @@ export default function RenderRoute (){
                                 <Route exact path="/edit/workout" component={EditWorkout}/>
                                 <Route exact path="/workouts" component={FindWorkouts}/>
                                 <Route exact path="/user/workouts" component={MyWorkouts}/>
+                                <Route exact path="/account" component={Membership}/>
                                 <Route exact path="/">
                                     <FindWorkouts />
                                 </Route>
@@ -57,6 +71,7 @@ export default function RenderRoute (){
                 <Switch>
                     <Route exact path="/" component={Login}/>
                     <Route exact path="/forgotpassword" component={ResetPassword}/> 
+                    <Route exact path="/payment" component={PaymentForm}/> 
                     <Route component={Error}/>
                 </Switch>
             </MainCard>

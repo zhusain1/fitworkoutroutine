@@ -5,6 +5,7 @@ export default function Error(){
         <div>
             <img src={logo} alt="logo" width="250" height="140"/>
             <h2> Page not found </h2>
+            <br/>
         </div>
     );
 }

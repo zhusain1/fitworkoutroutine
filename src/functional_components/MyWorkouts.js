@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Exercise from './Exercise';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { alpha } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 const link = {
@@ -66,7 +67,7 @@ export default function MyWorkouts() {
                 return (
                     <div>
                         <h2> My Workouts </h2>
-                        <Grid container justify = "center">
+                        <Grid container justifyContent = "center">
                         <div>
                             {workouts.length > 0 && 
                             <List className={classes.list}>

@@ -1,23 +1,30 @@
 import React, { useEffect }  from 'react';
 import api from '../util/api'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Exercise from './Exercise';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Skeleton from '@material-ui/lab/Skeleton';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 const link = {
     color: 'white',
     fontSize: '16px',
     textDecoration: 'none',
-  }
+}
   
-  const useStyles = makeStyles({
-    
-  });
+const useStyles = makeStyles({
+    table: {
+        color: 'white !important',
+        padding: '12px !important'
+    }
+});
 
 export default function MyWorkouts() {
     const [workouts, setWorkouts] = React.useState([]);
@@ -29,7 +36,9 @@ export default function MyWorkouts() {
             url: '/workout/getWorkoutsFromUser',
         }).then( res => {
             setTimeout( () => {
-                setWorkouts(res.data)
+                const unsorted = res.data;
+                unsorted.sort((a, b) => a.workoutType.localeCompare(b.workoutType))
+                setWorkouts(unsorted)
               }, 1200);
         })
         .catch((error) => {
@@ -69,15 +78,32 @@ export default function MyWorkouts() {
                         <Grid container justify = "center">
                         <div>
                             {workouts.length > 0 && 
-                            <List className={classes.list}>
-                                {workouts.map((workout) =>
-                                    <ListItem key={workout.workoutId}>
-                                        <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
-                                            {workout.workoutName}
-                                        </Link>
-                                    </ListItem>
-                                )}
-                            </List>}
+                            <TableContainer>
+                                <Table size="small">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className={classes.table}> <b>Workout Type</b> </TableCell>
+                                        <TableCell align="left" className={classes.table}> <b>Workout Name</b></TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {workouts.map((workout) =>
+                                        <TableRow key={workout.workoutId}>
+                                            <TableCell component="th" scope="row" className={classes.table}>
+                                                {workout.workoutType}
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
+                                                    {workout.workoutName}
+                                                </Link>
+                                            </TableCell>
+                                    </TableRow>
+                                    )}
+                                </TableBody>
+                                </Table>
+                          </TableContainer>}
+                          <br/>
+                          <br/>
                         </div>
                         </Grid>
                     </div>);

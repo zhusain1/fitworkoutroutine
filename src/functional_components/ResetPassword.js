@@ -12,7 +12,7 @@ import ErrorMessage from './ErrorMessage';
 import logo from '../img/logo-transparent.png'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
-
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(() => ({
     steps: {
@@ -270,6 +270,10 @@ export default function ResetPassword() {
 
   return (
     <div className={classes.steps}>
+      <Helmet>
+        <title>Fit Workout Routine | Forgot Password</title>
+        <meta name="description" content="Workout tutorials to help you get a Fit Workout Routine | fitworkoutroutine" />
+      </Helmet>
       <img src={logo} alt="logo" width="250" height="140"/>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {

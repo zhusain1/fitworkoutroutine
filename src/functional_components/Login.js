@@ -121,7 +121,7 @@ const errorStyle = {
         <div className='error' style={errorStyle}>
         {displayError()}
         </div>
-        <img src={logo} alt="logo" width="250" height="140"/>
+        <img src={logo} alt="fit workout routine logo" width="250" height="140"/>
         <>
             <form onSubmit={handleSubmit}>
                 <TextField id="email" label="email" variant="filled" type="email" value={email}

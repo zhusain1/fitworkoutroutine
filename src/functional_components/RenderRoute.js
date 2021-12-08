@@ -1,4 +1,3 @@
-import MainCard from './MainCard';
 import Login from './Login';
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -14,6 +13,7 @@ import MainTabs from './MainTabs';
 import ResetPassword from './ResetPassword';
 import Error from './Error'
 import NotificationContext from '../global/NotificationContext';
+import LandingPage from './LandingPage';
 
 const useStyles = makeStyles({
     container: {
@@ -53,13 +53,13 @@ export default function RenderRoute (){
         );
     } else{
         return(
-            <MainCard>
+            <>
                 <Switch>
-                    <Route exact path="/" component={Login}/>
+                    <Route exact path="/login" component={Login}/>
                     <Route exact path="/forgotpassword" component={ResetPassword}/> 
-                    <Route component={Error}/>
+                    <Route component={LandingPage}/>
                 </Switch>
-            </MainCard>
+            </>
         );
     }
 }

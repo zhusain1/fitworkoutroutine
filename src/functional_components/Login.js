@@ -9,7 +9,8 @@ import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
-
+import MainCard from './MainCard';
+import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -117,53 +118,59 @@ const errorStyle = {
     : <VisibilityIconOff onClick={handleTogglePassword}/>
 
     return (
-      <div className="Login">
-        <div className='error' style={errorStyle}>
-        {displayError()}
-        </div>
-        <img src={logo} alt="fit workout routine logo" width="250" height="140"/>
-        <>
-            <form onSubmit={handleSubmit}>
-                <TextField id="email" label="email" variant="filled" type="email" value={email}
-                onChange={e => setEmail(e.target.value)}
-                color="primary" className={classes.root}
-                    inputProps={{
+      <MainCard>
+        <Helmet>
+          <title>Fit Workout Routine | Login</title>
+          <meta name="description" content="Workout tutorials to help you get a Fit Workout Routine | fitworkoutroutine" />
+        </Helmet>
+        <div className="Login">
+          <div className='error' style={errorStyle}>
+          {displayError()}
+          </div>
+          <img src={logo} alt="fit workout routine logo" width="250" height="140"/>
+          <>
+              <form onSubmit={handleSubmit}>
+                  <TextField id="email" label="email" variant="filled" type="email" value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  color="primary" className={classes.root}
+                      inputProps={{
+                          className: classes.root
+                      }}
+                      InputLabelProps={{
                         className: classes.root
-                    }}
-                    InputLabelProps={{
-                      className: classes.root
-                    }}
-                />
-                <br/>
-                <br/>
-                <br/>
-                <TextField id="password" label="password" variant="filled" type="password" value={password} 
-                onChange={e => setPassword(e.target.value)}
-                color="primary" className={classes.root} inputRef={inputRef}
-                    inputProps={{
-                      className: classes.root
-                    }}
-                    InputLabelProps={{
-                      className: classes.root
-                    }}
-                    InputProps={{
-                      className: classes.icon,
-                      endAdornment: visibility
-                    }}
-                />
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
-                  Login
-                </Button>
-                <br/>
-                <br/>
-                <CreateAccount/>
-            </form>
-        </>
-      </div>
+                      }}
+                  />
+                  <br/>
+                  <br/>
+                  <br/>
+                  <TextField id="password" label="password" variant="filled" type="password" value={password} 
+                  onChange={e => setPassword(e.target.value)}
+                  color="primary" className={classes.root} inputRef={inputRef}
+                      inputProps={{
+                        className: classes.root
+                      }}
+                      InputLabelProps={{
+                        className: classes.root
+                      }}
+                      InputProps={{
+                        className: classes.icon,
+                        endAdornment: visibility
+                      }}
+                  />
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
+                    Login
+                  </Button>
+                  <br/>
+                  <br/>
+                  <CreateAccount/>
+              </form>
+          </>
+        </div>
+      </MainCard>
     );
   }
     

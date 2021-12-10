@@ -184,6 +184,7 @@ export default function EditWorkout(props) {
                 <MenuItem value={'Legs'}>Legs</MenuItem>
                 <MenuItem value={'Back'}>Back</MenuItem>
                 <MenuItem value={'Abs'}>Abs</MenuItem>
+                <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
                 <MenuItem value={'Cardio'}>Cardio</MenuItem>
               </Select>
             </FormControl>

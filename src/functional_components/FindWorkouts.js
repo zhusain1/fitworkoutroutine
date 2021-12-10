@@ -171,6 +171,7 @@ export default function FindWorkouts() {
               <MenuItem value={'Legs'}>Legs</MenuItem>
               <MenuItem value={'Back'}>Back</MenuItem>
               <MenuItem value={'Abs'}>Abs</MenuItem>
+              <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
               <MenuItem value={'Cardio'}>Cardio</MenuItem>
               </Select>
           </FormControl>

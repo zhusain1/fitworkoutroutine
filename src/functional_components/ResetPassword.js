@@ -13,6 +13,7 @@ import logo from '../img/logo-transparent.png'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
 import {Helmet} from "react-helmet";
+import MainCard from './MainCard';
 
 const useStyles = makeStyles(() => ({
     steps: {
@@ -269,42 +270,44 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className={classes.steps}>
-      <Helmet>
-        <title>Fit Workout Routine | Forgot Password</title>
-        <meta name="description" content="Workout tutorials to help you get a Fit Workout Routine | fitworkoutroutine" />
-      </Helmet>
-      <img src={logo} alt="logo" width="250" height="140"/>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-         
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              Password reset successful
-            </Typography>
-            <br/>
-            <Button onClick={redirect} className={classes.button}>
-              Back To Login
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}> </Typography>
-            {getStepContent(activeStep)}
-          </div>
-        )}
+    <MainCard>
+      <div className={classes.steps}>
+        <Helmet>
+          <title>Fit Workout Routine | Forgot Password</title>
+          <meta name="description" content="Workout tutorials to help you get a Fit Workout Routine | fitworkoutroutine" />
+        </Helmet>
+        <img src={logo} alt="logo" width="250" height="140"/>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps = {};
+            const labelProps = {};
+          
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <div>
+          {activeStep === steps.length ? (
+            <div>
+              <Typography className={classes.instructions}>
+                Password reset successful
+              </Typography>
+              <br/>
+              <Button onClick={redirect} className={classes.button}>
+                Back To Login
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Typography className={classes.instructions}> </Typography>
+              {getStepContent(activeStep)}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </MainCard>
   );
 }

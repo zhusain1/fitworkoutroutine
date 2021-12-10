@@ -2,6 +2,16 @@ html,body{
     background: #000000 !important;  
 }
 
+.main{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.main .MuiTypography-root{
+    font-size: 36px;
+    font-weight: bold;
+}
+
 input[type=file]::file-selector-button {
     background-color: #292929;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -37,6 +47,20 @@ input[type=file]::file-selector-button {
   and (max-device-width: 568px) {
     .MuiTab-root{
         font-size: 10px !important;
+    }
+
+    .main .MuiTypography-root{
+        font-size: 24px;
+    }
+
+    .main .logo{
+        width: 250px;
+        height: 140px;
+    }
+
+    .main .main_marketing{
+        width: 360px;
+        height: 300px;
     }
 }
 

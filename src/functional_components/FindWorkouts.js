@@ -90,11 +90,17 @@ const useStyles = makeStyles({
   container: {
     marginTop: '8px',
     textAlign: 'left',
-    width: '300px',
+    width: 'auto',
     backgroundColor: '#262626',
     height: 'auto',
-    color: 'white'
-}
+    color: 'white',
+    "@media (max-width: 568px)": {
+      '& img': {
+        width: '270px',
+      },
+      width: 'auto'
+    }
+  }
 });
 
 export default function FindWorkouts() {
@@ -199,7 +205,7 @@ export default function FindWorkouts() {
                         <ListItem key={workout.workoutId}>
                           <Container maxWidth="md" className={classes.container}>
                             <br/>
-                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="240" height="240"/>
+                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="400" height="240"/>
                             <br/>
                             <br/>
                             <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>

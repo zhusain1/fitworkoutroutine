@@ -19,6 +19,10 @@ const link = {
   textDecoration: 'none',
 }
 
+const image = {
+  cursor: 'pointer'
+}
+
 const useStyles = makeStyles({
   root: {
     color: 'white',
@@ -198,14 +202,16 @@ export default function FindWorkouts() {
   const displayExercises = () => {
     if(workouts.length > 0){
       return(
-          <Grid container justify = "center">
+          <Grid container justifyContent = "center">
             <div>
                 <List className={classes.list}>
                     {workouts.map((workout) =>
                         <ListItem key={workout.workoutId}>
                           <Container maxWidth="md" className={classes.container}>
                             <br/>
-                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="400" height="240"/>
+                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="400" height="240"
+                            onClick={() => displayExercise(workout.workoutId)} style={ image }
+                            />
                             <br/>
                             <br/>
                             <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>

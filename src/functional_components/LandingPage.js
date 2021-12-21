@@ -41,8 +41,8 @@ export default function LandingPage (){
                 <img src={logo}  className="logo" alt="fit workout routine logo" width="450" height="250"/>
                 <br/>
                 <div className="main_bg" style={{display:'block'}}>
-                    <img src={brand} className="main_marketing" alt="fit workout routine background" width="500" height="400px"/>
-                    <div className="mainDescription" style={{float:'right', marginTop: '20px'}}>
+                    <img src={brand} className="main_marketing" alt="fit workout routine background" width="500" height="380px"/>
+                    <div className="mainDescription" style={{marginTop: '20px'}}>
                         <Typography style={{color:'white', maxWidth: '350px'}}>
                             Find and learn new exercises with quality workout video tutorials.
                         </Typography>   

@@ -60,6 +60,7 @@ input[type=file]::file-selector-button {
 
     .main .main_marketing{
         max-width: 100%;
+        height: auto;
     }
 }
 

@@ -8,6 +8,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { Stream } from "@cloudflare/stream-react";
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Tag from './Tag';
 import api from '../util/api';
 
 const useStyles = makeStyles(() => ({
@@ -92,7 +93,7 @@ export default function ExerciseAccordian(props) {
         <AccordionDetails>
             <div className='description' style={{textAlign: 'left'}}>
             { ReactHtmlParser(props.workout.workoutDescription) }
-            <h3>Equipment needed: {props.workout.workoutTag}</h3>
+            <h3>Equipment needed: <Tag value={props.workout.workoutTag} /> </h3> 
             <small> Created by: {props.workout.email} </small>
             </div>
         </AccordionDetails>

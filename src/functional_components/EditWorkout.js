@@ -100,6 +100,7 @@ export default function EditWorkout(props) {
   const workoutId = props.workout.workoutId;
   const [workoutName, setWorkoutName] = React.useState(props.workout.workoutName);
   const [workoutType, setWorkoutType] = React.useState(props.workout.workoutType);
+  const [workoutTag, setWorkoutTag] = React.useState(props.workout.workoutTag);
   const [workoutDescription, setWorkoutDescription] = React.useState(props.workout.workoutDescription);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -111,7 +112,8 @@ export default function EditWorkout(props) {
       workout_id : workoutId,
       workout_name : workoutName,
       workout_description : workoutDescription,
-      workout_type : workoutType
+      workout_type : workoutType,
+      workout_tag : workoutTag
     }
 
     api({
@@ -131,7 +133,7 @@ export default function EditWorkout(props) {
   }
 
   const disabled = () => {
-    return !workoutName || !workoutDescription || !workoutType
+    return !workoutName || !workoutDescription || !workoutType || !workoutTag
   }
 
   const renderSuccess = () => {
@@ -164,7 +166,6 @@ export default function EditWorkout(props) {
             <br/>
             <br/>
             <br/>
-            <br/>
             <FormControl className={classes.select}>
               <InputLabel id="workout-type" className={classes.select}>
                 Focus Workout On
@@ -186,6 +187,30 @@ export default function EditWorkout(props) {
                 <MenuItem value={'Abs'}>Abs</MenuItem>
                 <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
                 <MenuItem value={'Cardio'}>Cardio</MenuItem>
+              </Select>
+            </FormControl>
+            <br/>
+            <br/>
+            <FormControl className={classes.select}>
+              <InputLabel id="workout-tag" className={classes.select}>
+                Equipment Needed
+              </InputLabel>
+              <Select
+                labelId="workout-tag"
+                id="workout-tag-select"
+                value={workoutTag}
+                onChange={e => setWorkoutTag(e.target.value)}
+                className={classes.select}
+                inputProps={{
+                  className: classes.select
+                }}
+              >
+                <MenuItem value={'Barbell'}>Barbell</MenuItem>
+                <MenuItem value={'Dumbbell'}>Dumbbell</MenuItem>
+                <MenuItem value={'Bodyweight'}>Bodyweight</MenuItem>
+                <MenuItem value={'Machine'}>Machine</MenuItem>
+                <MenuItem value={'Medicine Ball'}>Medicine Ball</MenuItem>
+                <MenuItem value={'Kettlebell'}>Kettlebell</MenuItem>
               </Select>
             </FormControl>
             <br/>

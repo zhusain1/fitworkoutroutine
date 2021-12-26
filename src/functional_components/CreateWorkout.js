@@ -75,6 +75,7 @@ export default function CreateWorkout(props) {
   const classes = useStyles();
   const [workoutName, setWorkoutName] = React.useState('');
   const [workoutType, setWorkoutType] = React.useState('');
+  const [workoutTag, setWorkoutTag] = React.useState('');
   const [workoutDescription, setWorkoutDescription] = React.useState('');
   const [error, setError] = React.useState(false);
 
@@ -84,7 +85,8 @@ export default function CreateWorkout(props) {
     const workout = {
       workout_name: workoutName,
       workout_description: workoutDescription,
-      workout_type: workoutType
+      workout_type: workoutType,
+      workout_tag: workoutTag
     }
 
     api({
@@ -102,7 +104,7 @@ export default function CreateWorkout(props) {
   }
 
   const disabled = () => {
-    return !workoutName || !workoutDescription || !workoutType
+    return !workoutName || !workoutDescription || !workoutType || !workoutTag
   }
 
   const renderError = () => {
@@ -131,8 +133,6 @@ export default function CreateWorkout(props) {
             />
             <br/>
             <br/>
-            <br/>
-            <br/>
             <FormControl className={classes.select}>
               <InputLabel id="workout-type" className={classes.select}>
                 Focus Workout On
@@ -154,6 +154,30 @@ export default function CreateWorkout(props) {
                 <MenuItem value={'Abs'}>Abs</MenuItem>
                 <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
                 <MenuItem value={'Cardio'}>Cardio</MenuItem>
+              </Select>
+            </FormControl>
+            <br/>
+            <br/>
+            <FormControl className={classes.select}>
+              <InputLabel id="workout-tag" className={classes.select}>
+                Equipment Needed
+              </InputLabel>
+              <Select
+                labelId="workout-tag"
+                id="workout-tag-select"
+                value={workoutTag}
+                onChange={e => setWorkoutTag(e.target.value)}
+                className={classes.select}
+                inputProps={{
+                  className: classes.select
+                }}
+              >
+                <MenuItem value={'Barbell'}>Barbell</MenuItem>
+                <MenuItem value={'Dumbbell'}>Dumbbell</MenuItem>
+                <MenuItem value={'Bodyweight'}>Bodyweight</MenuItem>
+                <MenuItem value={'Machine'}>Machine</MenuItem>
+                <MenuItem value={'Medicine Ball'}>Medicine Ball</MenuItem>
+                <MenuItem value={'Kettlebell'}>Kettlebell</MenuItem>
               </Select>
             </FormControl>
             <br/>

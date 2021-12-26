@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,6 +12,8 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Exercise from './Exercise';
+import FilterAccordian from './FilterAccordian';
+import EquipmentContext from '../global/EquipmentContext';
 
 const link = {
   color: 'white',
@@ -111,6 +113,7 @@ export default function FindWorkouts() {
   const [workoutType, setWorkoutType] = React.useState("");
   const [workouts, setWorkouts] = React.useState([]);
   const [display, setDisplay] = React.useState(false);
+  const [workoutTag, setWorkoutTag] = React.useState("All");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -159,53 +162,70 @@ export default function FindWorkouts() {
         </React.Fragment>);
     } else {
       return (
-        <React.Fragment>          
-          <h2> Find Workout</h2> 
-          <form onSubmit={handleSubmit}>
-          <FormControl className={classes.select}>
-              <InputLabel id="workout-type" className={classes.select}>
-              Focus Workout On
-              </InputLabel>
-              <Select
-              labelId="workout-type"
-              id="workout-type-select"
-              value={workoutType}
-              onChange={e => setWorkoutType(e.target.value)}
-              className={classes.select}
-              inputProps={{
-                  className: classes.select
-              }}
-              >
-              <MenuItem value={'Chest'}>Chest</MenuItem>
-              <MenuItem value={'Arms'}>Arms</MenuItem>
-              <MenuItem value={'Legs'}>Legs</MenuItem>
-              <MenuItem value={'Back'}>Back</MenuItem>
-              <MenuItem value={'Abs'}>Abs</MenuItem>
-              <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
-              <MenuItem value={'Cardio'}>Cardio</MenuItem>
-              </Select>
-          </FormControl>
-          <br/>
-          <br/>
-          <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
-              Find
-          </Button>
-          </form>
-          <br/>
-          {displayExercises()}
-          <br/>
-        </React.Fragment>
+        <EquipmentContext.Provider value= {{workoutTag, setWorkoutTag}}>
+          <React.Fragment>          
+            <h2> Find Workout</h2> 
+            <form onSubmit={handleSubmit}>
+            <FormControl className={classes.select}>
+                <InputLabel id="workout-type" className={classes.select}>
+                Focus Workout On
+                </InputLabel>
+                <Select
+                labelId="workout-type"
+                id="workout-type-select"
+                value={workoutType}
+                onChange={e => setWorkoutType(e.target.value)}
+                className={classes.select}
+                inputProps={{
+                    className: classes.select
+                }}
+                >
+                <MenuItem value={'Chest'}>Chest</MenuItem>
+                <MenuItem value={'Arms'}>Arms</MenuItem>
+                <MenuItem value={'Legs'}>Legs</MenuItem>
+                <MenuItem value={'Back'}>Back</MenuItem>
+                <MenuItem value={'Abs'}>Abs</MenuItem>
+                <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
+                <MenuItem value={'Cardio'}>Cardio</MenuItem>
+                </Select>
+            </FormControl>
+            <br/>
+            <br/>
+            <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
+                Find
+            </Button>
+            </form>
+            <br/>
+            {displayExercises()}
+            <br/>
+          </React.Fragment>
+        </EquipmentContext.Provider>
       );
     } 
   }
 
   const displayExercises = () => {
-    if(workouts.length > 0){
+    let filteredWorkouts = [];
+    console.log(filteredWorkouts)
+
+    if(workoutTag !== "All"){
+      workouts.forEach(workout => {
+        if (typeof workout.workoutTag !== 'undefined' && workout.workoutTag === workoutTag){
+          filteredWorkouts.push(workout);
+        }
+      });
+    } else{
+      filteredWorkouts = workouts;
+    }
+
+    if(filteredWorkouts.length >= 0){
       return(
+          <>
+          <FilterAccordian/>
           <Grid container justifyContent = "center">
             <div>
                 <List className={classes.list}>
-                    {workouts.map((workout) =>
+                    {filteredWorkouts.map((workout) =>
                         <ListItem key={workout.workoutId}>
                           <Container maxWidth="md" className={classes.container}>
                             <br/>
@@ -225,6 +245,7 @@ export default function FindWorkouts() {
                 </List>
             </div>
           </Grid>
+          </>
       );
     } 
   }

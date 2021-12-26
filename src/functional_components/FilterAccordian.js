@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
 export default function FilterAccordian(props) {
   const classes = useStyles();
 
-  const { setWorkoutTag, workoutTag } = useContext(EquipmentContext);
+  const { setWorkoutTag } = useContext(EquipmentContext);
 
   const handleClick = (tag) => {
     setWorkoutTag(tag);

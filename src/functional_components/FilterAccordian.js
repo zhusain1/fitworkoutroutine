@@ -54,9 +54,9 @@ export default function FilterAccordian(props) {
                     <Tag value={'Barbell'} /> 
                   </div> 
                 </Grid>
-                <Grid key="Dumbbell" item onClick={() => handleClick("Dumbell")}>
+                <Grid key="Dumbbell" item onClick={() => handleClick("Dumbbell")}>
                   <div className="tag">
-                    <Tag value={'Dumbell'}/> 
+                    <Tag value={'Dumbbell'}/> 
                   </div>
                 </Grid>
                 <Grid key="Bodyweight" item onClick={() => handleClick("Bodyweight")}>

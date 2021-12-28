@@ -30,7 +30,8 @@ const useStyles = makeStyles(() => ({
         margin: 'auto',
         float: 'none',
         display: 'block',
-        marginRight: '12px'
+        marginRight: '12px',
+        fontSize: '10px'
       },
     }
   }));

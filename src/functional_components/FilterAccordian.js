@@ -14,8 +14,6 @@ const useStyles = makeStyles(() => ({
     color: 'white',
    },
    filterWrapper: {
-     margin: '0 auto',
-     width: '350px',
      '@media (max-device-width: 480px)': {
       margin: 'auto',
       width: '100%'

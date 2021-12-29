@@ -75,7 +75,7 @@ export default function MyWorkouts() {
                 return (
                     <div>
                         <h2> My Workouts </h2>
-                        <Grid container justify = "center">
+                        <Grid container justifyContent = "center">
                         <div>
                             {workouts.length > 0 && 
                             <TableContainer>

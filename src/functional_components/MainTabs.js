@@ -37,14 +37,27 @@ export default function MainTabs() {
     sessionStorage.removeItem('workout');
   }
 
+
+  const determineRoutes = () => {
+    if(history.location.pathname !== '/'){
+      if(history.location.pathname !== routes[0] && history.location.pathname !== routes[1]){ // not a valid path fallback
+        return routes[0];
+      }
+      else{
+        return history.location.pathname;
+      }
+
+    } else{
+      return routes[0];
+    }
+  }
+
   const routes = ["/workouts", "/user/workouts"];
 
   return (
       <div className={classes.root}>
         <Header/>
-          <Tabs value={history.location.pathname !== "/"
-                        ? history.location.pathname
-                        : routes[0]} className={classes.tab} centered>
+          <Tabs value={determineRoutes()} className={classes.tab} centered>
             <Tab label="Workouts" component={Link} to={routes[0]} value={routes[0]}  />
             <Tab label="My Workouts" component={Link} to={routes[1]} value={routes[1]}  />
           </Tabs>

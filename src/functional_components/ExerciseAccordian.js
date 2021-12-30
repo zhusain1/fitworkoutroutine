@@ -93,7 +93,7 @@ export default function ExerciseAccordian(props) {
         <AccordionDetails>
             <div className='description' style={{textAlign: 'left'}}>
             { ReactHtmlParser(props.workout.workoutDescription) }
-            <h3>Equipment needed: <Tag value={props.workout.workoutTag} /> </h3> 
+            <h3>Equipment needed: <Tag value={props.workout.workoutTag} toggle={true} /> </h3> 
             <small> Created by: {props.workout.email} </small>
             </div>
         </AccordionDetails>

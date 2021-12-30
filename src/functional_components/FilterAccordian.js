@@ -68,8 +68,8 @@ export default function FilterAccordian() {
         setKettlebell(!kettlebell);
         setBarbell(true);
         setDumbbell(true);
-        setKettlebell(true);
         setBodyweight(true);
+        setMedicineball(true);
         setMachine(true);
         setAll(true)
         break;

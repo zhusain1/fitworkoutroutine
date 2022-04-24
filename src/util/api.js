@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let uri = 'https://fitworkoutroutineapi.herokuapp.com/';
+let uri = 'http://localhost:8080/';
 let headers = {
     'Content-Type':'application/json'
 }

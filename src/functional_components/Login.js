@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import logo from '../img/logo-transparent.png'
-import CreateAccount from './CreateAccount';
+import Footer from './Footer';
 import { useHistory } from 'react-router';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
@@ -166,7 +166,7 @@ const errorStyle = {
                   </Button>
                   <br/>
                   <br/>
-                  <CreateAccount/>
+                  <Footer/>
               </form>
           </>
         </div>

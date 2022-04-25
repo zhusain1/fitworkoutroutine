@@ -88,31 +88,28 @@ export default function BillingInfo(user){
         console.log("[PaymentMethod]", payload);
 
 
-        if(typeof payload.error.code !== 'undefined'){
-          setError("Error charging card")
-        } else{
-          const request = {
+        const request = {
             first_name: user.user.first_name,
             last_name: user.user.last_name,
             email: user.user.email,
             password: user.user.password,
             paymentMethod: payload.paymentMethod.id
-          }
-          try{
-            setError('')
-            const response = await api.post('/user/createUser', request);
-            console.log(response.data.token)
-            
-            sessionStorage.setItem('token', response.data.token)
-
-            history.push(
-              '/'
-            );
-          }catch (err) {
-            console.log(err) 
-            setError("Error charging card")
-          }
         }
+        try{
+          setError('')
+          const response = await api.post('/user/createUser', request);
+          console.log(response.data.token)
+          
+          sessionStorage.setItem('token', response.data.token)
+
+          history.push(
+            '/'
+          );
+        }catch (err) {
+          console.log(err) 
+          setError("Error charging card")
+        }
+      }
       };
 
     return(

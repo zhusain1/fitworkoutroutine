@@ -10,6 +10,7 @@ import MainTabs from './MainTabs';
 import ResetPassword from './ResetPassword';
 import Error from './Error'
 import LandingPage from './LandingPage';
+import Signup from './Signup'; 
 
 const useStyles = makeStyles({
     container: {
@@ -46,7 +47,8 @@ export default function RenderRoute (){
             <>
                 <Switch>
                     <Route exact path="/login" component={Login}/>
-                    <Route exact path="/forgotpassword" component={ResetPassword}/> 
+                    <Route exact path="/forgotpassword" component={ResetPassword}/>
+                    <Route exact path="/signup" component={Signup}/> 
                     <Route component={LandingPage}/>
                 </Switch>
             </>

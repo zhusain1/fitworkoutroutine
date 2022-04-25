@@ -91,7 +91,7 @@ export default function BillingInfo(user){
         if(payload.error.code == undefined){
           setError('')
         } else{
-          setError('Error charging code')
+          setError('Error charging card')
         }
 
 

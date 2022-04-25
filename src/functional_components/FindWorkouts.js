@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useEffect }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -114,6 +114,60 @@ export default function FindWorkouts() {
   const [workouts, setWorkouts] = React.useState([]);
   const [display, setDisplay] = React.useState(false);
   const [workoutTag, setWorkoutTag] = React.useState("All");
+
+  useEffect(() => {
+    
+    const workout_type = sessionStorage.getItem('workoutType');
+
+    if(workout_type != null){
+      setWorkoutType(workout_type)
+      sessionStorage.removeItem('workoutType');
+
+      const workout = {
+        workout_type : workoutType
+      }
+  
+      api({
+        method: 'post',
+        url: '/workout/getWorkoutByType',
+        data: workout
+      }).then( res => {
+        setWorkouts(res.data);
+        console.log(res.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+    
+  }, [workoutType]);
+
+  useEffect(() => {
+    
+    const workout_type = sessionStorage.getItem('workoutType');
+
+    if(workout_type != null){
+      setWorkoutType(workout_type)
+      sessionStorage.removeItem('workoutType');
+
+      const workout = {
+        workout_type : workoutType
+      }
+  
+      api({
+        method: 'post',
+        url: '/workout/getWorkoutByType',
+        data: workout
+      }).then( res => {
+        setWorkouts(res.data);
+        console.log(res.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+    
+  }, [workoutType]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

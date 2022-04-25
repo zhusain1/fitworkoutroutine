@@ -30,6 +30,8 @@ const useStyles = makeStyles({
 });
 
 export default function Exercise(props) {
+
+  sessionStorage.setItem('workoutType', props.workout.workoutType)
   
   const handleBack = () => {
     sessionStorage.removeItem('workout');

@@ -88,6 +88,13 @@ export default function BillingInfo(user){
         console.log("[PaymentMethod]", payload);
 
 
+        if(payload.error.code == undefined){
+          setError('')
+        } else{
+          setError('Error charging code')
+        }
+
+
         const request = {
             first_name: user.user.first_name,
             last_name: user.user.last_name,
@@ -109,7 +116,7 @@ export default function BillingInfo(user){
           console.log(err) 
           setError("Error charging card")
         }
-      };
+    }
 
     return(
         <div>

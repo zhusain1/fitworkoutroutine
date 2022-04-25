@@ -1,35 +1,11 @@
 import logo from '../img/logo-transparent.png';
 import brand from '../img/brand.jpg';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 import { useHistory } from 'react-router';
-
-const useStyles = makeStyles(() => ({
-    button: {
-      color: 'white',
-      backgroundColor: '#6F0C16',
-      width: '150px',
-      borderRadius: '28px',
-      '&:hover': {
-        backgroundColor: '#292929',
-        color: 'white'
-      },
-      '&:focus': {
-        backgroundColor: '6F0C16',
-        color: 'white'
-      },
-      '&:active': {
-        backgroundColor: 'black',
-        color: 'white'
-      },
-    },
-  }));
-
 
 export default function LandingPage (){
 
-    const classes = useStyles();
     const history = useHistory();
 
     const handleClick = () => {
@@ -47,7 +23,26 @@ export default function LandingPage (){
                             Find and learn new exercises with quality workout video tutorials.
                         </Typography>   
                         <br/>
-                        <Button variant="contained" type="submit" className={classes.button} onClick={handleClick}>
+                        <Button variant="contained" type="submit" onClick={handleClick}
+                            sx = {{
+                                color: 'white',
+                                backgroundColor: '#6F0C16',
+                                width: '150px',
+                                borderRadius: '28px',
+                                '&:hover': {
+                                    backgroundColor: '#292929',
+                                    color: 'white'
+                                },
+                                '&:focus': {
+                                    backgroundColor: '6F0C16',
+                                    color: 'white'
+                                },
+                                '&:active': {
+                                    backgroundColor: 'black',
+                                    color: 'white'
+                                }
+                            }}
+                        >
                             Sign in
                         </Button>
                     </div>

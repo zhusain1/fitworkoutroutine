@@ -3,11 +3,11 @@ import {loadStripe} from '@stripe/stripe-js';
 import {
   Elements
 } from '@stripe/react-stripe-js';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/styles';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Typography from '@mui/material/Typography';
 import MainCard from './MainCard';
 import logo from '../img/logo-transparent.png';
 import CreateAccount from './CreateAccount';

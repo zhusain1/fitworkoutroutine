@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import TextField from '@mui/material/TextField';
+import { makeStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
 import logo from '../img/logo-transparent.png'
 import Footer from './Footer';
 import { useHistory } from 'react-router';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIconOff from '@mui/icons-material/VisibilityOff';
 import MainCard from './MainCard';
 import {Helmet} from "react-helmet";
 

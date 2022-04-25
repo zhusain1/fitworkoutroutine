@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import { makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 
 const useStyles = makeStyles(() => ({
   link: {

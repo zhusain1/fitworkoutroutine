@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import { makeStyles } from '@mui/styles';
+import Link from '@mui/material/Link';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
 import { useHistory } from 'react-router';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
 

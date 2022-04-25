@@ -1,13 +1,12 @@
 import React, { useEffect }  from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ReactHtmlParser from 'react-html-parser';
+import { makeStyles } from '@mui/styles';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Stream } from "@cloudflare/stream-react";
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Tag from './Tag';
 import api from '../util/api';
 
@@ -92,7 +91,7 @@ export default function ExerciseAccordian(props) {
         </AccordionSummary>
         <AccordionDetails>
             <div className='description' style={{textAlign: 'left'}}>
-            { ReactHtmlParser(props.workout.workoutDescription) }
+            { props.workout.workoutDescription }
             <h3>Equipment needed: <Tag value={props.workout.workoutTag} toggle={true} /> </h3> 
             <small> Created by: {props.workout.email} </small>
             </div>

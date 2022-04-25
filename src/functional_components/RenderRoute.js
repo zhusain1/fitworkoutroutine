@@ -3,9 +3,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import FindWorkouts from './FindWorkouts';
 import MyWorkouts from './MyWorkouts';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from  '@material-ui/core/CssBaseline';
+import Container from '@mui/material/Container';
+import { makeStyles } from '@mui/styles';
+import CssBaseline from  '@mui/material/CssBaseline';
 import MainTabs from './MainTabs';
 import ResetPassword from './ResetPassword';
 import Error from './Error'

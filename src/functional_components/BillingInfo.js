@@ -109,7 +109,6 @@ export default function BillingInfo(user){
           console.log(err) 
           setError("Error charging card")
         }
-      }
       };
 
     return(

@@ -88,7 +88,7 @@ export default function BillingInfo(user){
         console.log("[PaymentMethod]", payload);
 
 
-        if(payload.error.code && payload.error.code.length > 0){
+        if(typeof payload.error.code !== 'undefined'){
           setError("Error charging card")
         } else{
           const request = {

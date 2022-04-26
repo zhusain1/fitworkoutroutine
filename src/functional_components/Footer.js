@@ -18,9 +18,16 @@ export default function Footer() {
 
   return (
     <div>
-      <div className="footerlinks">
+      <div className="footerlinks"
+        style={{
+          display: 'inline-flex',
+          fontWeight: 'bold',
+          padding: '12px',
+          fontSize: '18px'
+        }}
+      >
         <small>
-        <Box component="div" display="inline">
+        <Box component="div" >
             <Link href="/signup" className={classes.link}>
                 Create Account
             </Link>

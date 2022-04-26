@@ -82,6 +82,13 @@ const theme = createTheme({
             backgroundColor: 'black',
             opacity: 0.5
           }
+        },
+        MuiStepLabel:{
+          styleOverrides: {
+            root: {
+              color: 'white',
+            }
+          },
         }
       }
     }

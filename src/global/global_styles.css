@@ -20,6 +20,15 @@ html,body{
     background-color: black;
 }
 
+/* Create Account Stepper */
+span.MuiStepLabel-label.Mui-active, span.MuiStepLabel-label.Mui-completed, span.MuiStepLabel-label.Mui-disabled {
+    color: white;
+}
+
+.MuiStepIcon-root {
+    color: white !important;
+}
+
 input[type=file]::file-selector-button {
     background-color: #292929;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;

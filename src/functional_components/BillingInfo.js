@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
     useStripe,
     useElements,
@@ -6,66 +6,33 @@ import {
     CardCvcElement,
     CardExpiryElement
   } from "@stripe/react-stripe-js";
-import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 
-
-  const useStyles = makeStyles(() => ({
-    button: {
-      color: 'white',
-      backgroundColor: '#292929',
-      '&:hover': {
-        backgroundColor: 'black',
-        color: 'white'
-      },
-      '&:focus': {
-        backgroundColor: 'black',
-        color: 'white'
-      },
-      '&:active': {
-        backgroundColor: 'black',
-        color: 'white'
-      },
-      '&:disabled': {
-        color: 'white'
-      },
-    },
-  }));
-
 export default function BillingInfo(user){
     const stripe = useStripe();
     const elements = useElements();
-    const classes = useStyles();
     const history = useHistory();
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const useOptions = () => {
-        const options = useMemo(
-          () => ({
-            style: {
-              base: {
-                color: "white",
-                "::placeholder": {
-                  color: "#A9A9AC"
-                }
-              },
-              invalid: {
-                color: "#9e2146"
-              }
-            }
-          }),
-        );
-      
-        return options;
-    };
-
-    const options = useOptions();
+    const options = {
+      style: {
+        base: {
+          color: "white",
+          "::placeholder": {
+            color: "#A9A9AC"
+          }
+        },
+        invalid: {
+          color: "#9e2146"
+        }
+      }
+    }
 
     const displayError = () => {
       if(error.length > 0 ){
@@ -177,7 +144,7 @@ export default function BillingInfo(user){
                 <br/>
                 <br/>
 
-                <Button variant="contained" type="submit" className={classes.button} disabled={!stripe}>
+                <Button variant="contained" type="submit" disabled={!stripe}>
                     Pay
                 </Button>
             </form>
@@ -207,6 +174,7 @@ export default function BillingInfo(user){
           setError('')
         } else{
           setError('Error charging card')
+          return
         }
 
 

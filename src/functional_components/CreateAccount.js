@@ -97,7 +97,8 @@ export default function CreateAccount() {
                   color="primary"  inputRef={inputRef}
                       InputProps={{
                         endAdornment: visibility
-                  }}/>
+                  }}
+            />
             <br/>
             <br/>
             <br/>

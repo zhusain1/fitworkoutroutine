@@ -38,23 +38,6 @@ const useStyles = makeStyles({
     height: '15px',
     textAlign: 'left'
   },
-  select: {
-    color: 'white',
-    minWidth: '250px',
-    textAlign: 'left',
-    '& .MuiInput-underline::before': {
-      borderBottom: '1px solid #F4F3EE',
-    },
-    '& .MuiInput-underline::after': {
-      borderBottom: '1px solid #6F0C16'
-    },
-    '& .MuiInput-underline:hover:not(.Mui-disabled)::before': {
-      borderBottom: '1px solid #6F0C16'
-    },
-    '& .MuiSvgIcon-root': {
-      color: 'white'
-    }
-  },
   button: {
     color: 'white',
     backgroundColor: '#292929',
@@ -220,8 +203,15 @@ export default function FindWorkouts() {
           <React.Fragment>          
             <h2> Find Workout</h2> 
             <form onSubmit={handleSubmit}>
-            <FormControl className={classes.select}>
-                <InputLabel id="workout-type" className={classes.select}>
+            <FormControl
+              sx={{
+                padding: '12px',
+                color: 'white',
+                minWidth: '250px',
+                textAlign: 'left'
+              }}
+            >
+                <InputLabel id="workout-type">
                 Focus Workout On
                 </InputLabel>
                 <Select
@@ -229,10 +219,6 @@ export default function FindWorkouts() {
                 id="workout-type-select"
                 value={workoutType}
                 onChange={e => setWorkoutType(e.target.value)}
-                className={classes.select}
-                inputProps={{
-                    className: classes.select
-                }}
                 >
                 <MenuItem value={'Chest'}>Chest</MenuItem>
                 <MenuItem value={'Arms'}>Arms</MenuItem>

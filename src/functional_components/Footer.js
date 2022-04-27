@@ -1,20 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
-const useStyles = makeStyles(() => ({
-  link: {
-    textDecoration: 'underline',
-    '&:hover': {
-      textDecoration: 'none',
-      borderBottom: '2px solid #6F0C16'
-    }
-  }
-}));
-
 export default function Footer() {
-  const classes = useStyles();
 
   return (
     <div>
@@ -28,11 +16,27 @@ export default function Footer() {
       >
         <small>
         <Box component="div" >
-            <Link href="/signup" className={classes.link}>
+            <Link href="/signup" 
+              sx={{
+                textDecoration: 'underline',
+                '&:hover': {
+                  textDecoration: 'none',
+                  borderBottom: '2px solid #6F0C16'
+                }
+              }}
+            >
                 Create Account
             </Link>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <Link href="/forgotpassword" className={classes.link}>
+            <Link href="/forgotpassword" 
+               sx={{
+                textDecoration: 'underline',
+                '&:hover': {
+                  textDecoration: 'none',
+                  borderBottom: '2px solid #6F0C16'
+                }
+              }}
+            >
               Forgot Password
             </Link>
           </Box>

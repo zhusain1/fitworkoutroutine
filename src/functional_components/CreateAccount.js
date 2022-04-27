@@ -33,7 +33,12 @@ export default function CreateAccount() {
 
   const displayError = () => {
     if(error.length > 0 ){
-      return <ErrorMessage error={error}/>
+      return (
+        <ErrorMessage sx={{
+          marginTop: '24px'
+        }}
+        error={error}/>
+      ) 
     }
   }
 

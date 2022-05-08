@@ -2,7 +2,6 @@ import React, { useEffect }  from 'react';
 import api from '../util/api'
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import { makeStyles } from '@mui/styles';
 import Exercise from './Exercise';
 import CircularProgress from '@mui/material/CircularProgress';
 import Skeleton from '@mui/material/Skeleton';
@@ -19,12 +18,10 @@ const link = {
     textDecoration: 'none',
 }
   
-const useStyles = makeStyles({
-    table: {
-        color: 'white !important',
-        padding: '12px !important'
-    }
-});
+const table = {
+    color: 'white !important',
+    padding: '12px !important'
+};
 
 export default function MyWorkouts() {
     const [workouts, setWorkouts] = React.useState([]);
@@ -45,8 +42,6 @@ export default function MyWorkouts() {
             console.log(error);
         });
         }, []);
-
-    const classes = useStyles();
 
     const displayExercise = (workoutId) => {
         sessionStorage.setItem('workout', JSON.stringify(selectWorkoutById(workoutId)));
@@ -82,14 +77,14 @@ export default function MyWorkouts() {
                                 <Table size="small">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell className={classes.table}> <b>Workout Type</b> </TableCell>
-                                        <TableCell align="left" className={classes.table}> <b>Workout Name</b></TableCell>
+                                        <TableCell style={table}> <b>Workout Type</b> </TableCell>
+                                        <TableCell align="left" style={table}> <b>Workout Name</b></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {workouts.map((workout) =>
                                         <TableRow key={workout.workoutId}>
-                                            <TableCell component="th" scope="row" className={classes.table}>
+                                            <TableCell component="th" scope="row" style={table}>
                                                 {workout.workoutType}
                                             </TableCell>
                                             <TableCell align="left">

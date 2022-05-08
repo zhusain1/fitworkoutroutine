@@ -100,6 +100,20 @@ const theme = createTheme({
         }
       }
     },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          color: 'white'
+        }
+      }
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: 'white'
+        }
+      }
+    }
   }
 });
 

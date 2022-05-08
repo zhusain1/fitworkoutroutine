@@ -9,7 +9,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Tag from './Tag';
 import api from '../util/api';
 
-
 export default function ExerciseAccordian(props) {
   const [checked, setChecked] = React.useState(false);
 
@@ -85,7 +84,7 @@ export default function ExerciseAccordian(props) {
         </AccordionSummary>
         <AccordionDetails>
             <div className='description' style={{textAlign: 'left'}}>
-            { props.workout.workoutDescription }
+            <div dangerouslySetInnerHTML={{__html: props.workout.workoutDescription}} />
             <h3>Equipment needed: <Tag value={props.workout.workoutTag} toggle={true} /> </h3> 
             <small> Created by: {props.workout.email} </small>
             </div>

@@ -14,6 +14,7 @@ html,body{
 
 .tag span.MuiChip-label{
     cursor: pointer;
+    color: white;
 }
 
 .tag .MuiChip-root:hover{
@@ -36,6 +37,7 @@ span.MuiStepLabel-label.Mui-active, span.MuiStepLabel-label.Mui-completed, span.
 
 .MuiSvgIcon-root {
     cursor: pointer;
+    color: white !important;
 }
 
 .MuiSvgIcon-root:hover {
@@ -70,6 +72,11 @@ span.MuiStepLabel-label.Mui-active, span.MuiStepLabel-label.Mui-completed, span.
 
     .main .main_marketing{
         max-width: 100%;
+        height: auto;
+    }
+
+    .thumbnail{
+        width: 324px;
         height: auto;
     }
 }

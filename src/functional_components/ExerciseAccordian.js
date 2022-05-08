@@ -1,5 +1,4 @@
 import React, { useEffect }  from 'react';
-import { makeStyles } from '@mui/styles';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -10,17 +9,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Tag from './Tag';
 import api from '../util/api';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    width: '100%',
-    backgroundColor: '#131416',
-    color: 'white'
-   }
-}));
 
 export default function ExerciseAccordian(props) {
-  const classes = useStyles();
-
   const [checked, setChecked] = React.useState(false);
 
   useEffect(() => {
@@ -81,7 +71,11 @@ export default function ExerciseAccordian(props) {
         control={<Switch checked={checked} onChange={handleChange} name="checked" />}
         label="Saved to My Workouts"
       />
-      <Accordion className={classes.root}>
+      <Accordion sx={{
+          width: '100%',
+          backgroundColor: '#131416',
+          color: 'white'
+        }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon color='primary'/>}
           aria-controls="panel1a-content"

@@ -1,15 +1,17 @@
 import React from 'react';
 import logo from '../img/logo-transparent.png'
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
 import { useHistory } from 'react-router';
 
-const useStyles = makeStyles(() => ({
-    button: {
+export default function Header() {
+    const history = useHistory();
+
+    const buttonStyle = {
       color: 'white',
       float: 'right',
       marginRight: '60px',
       marginTop: '70px',
+      width: '150px',
       backgroundColor: '#292929',
       '&:hover': {
         backgroundColor: 'black',
@@ -23,28 +25,12 @@ const useStyles = makeStyles(() => ({
         backgroundColor: 'black',
         color: 'white'
       },
-      '&:disabled': {
-        color: 'white'
-      },
-      '@media (max-device-width: 480px)': {
-        margin: 'auto',
-        float: 'none',
-        display: 'block',
-        marginRight: '12px',
-        fontSize: '10px'
-      },
-    }
-  }));
-
-export default function Header() {
-    const history = useHistory();
+    };
 
     const headerStyle = {
         marginLeft: '30px',
         marginTop: '20px'
     };
-
-    const classes = useStyles();
 
     const logout = (e) => {
         sessionStorage.clear();
@@ -54,8 +40,8 @@ export default function Header() {
     return (
     <div>
         <img src={logo} alt="logo" width="250" height="120" className='logo' style={headerStyle}/>
-        <Button variant="contained" type="submit" className={classes.button} onClick={logout}>
-        Logout
+        <Button variant="contained" type="submit" style={buttonStyle} onClick={logout} className='logout'>
+          Logout
         </Button>   
     </div>
     );

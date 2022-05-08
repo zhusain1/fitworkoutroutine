@@ -1,15 +1,7 @@
-import Chip from '@material-ui/core/Chip';
-import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@mui/material/Chip';
 import { useState, useEffect } from 'react';
 
-const useStyles = makeStyles({
-    root: {
-      color: 'white',
-    }
-})
-
 export default function Tag(props){
-    const classes = useStyles();
 
     const [color, setColor] = useState({});
 
@@ -28,6 +20,6 @@ export default function Tag(props){
    
 
     return (
-        <Chip className={classes.root} label={props.value} style={color}/>
+        <Chip label={props.value} style={color}/>
     );
 }

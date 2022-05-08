@@ -3,34 +3,30 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import FindWorkouts from './FindWorkouts';
 import MyWorkouts from './MyWorkouts';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from  '@material-ui/core/CssBaseline';
+import Container from '@mui/material/Container';
+import CssBaseline from  '@mui/material/CssBaseline';
 import MainTabs from './MainTabs';
 import ResetPassword from './ResetPassword';
 import Error from './Error'
 import LandingPage from './LandingPage';
 import Signup from './Signup'; 
 
-const useStyles = makeStyles({
-    container: {
-        marginTop: '32px',
-        paddingTop: '4px',
-        textAlign: 'center',
-        backgroundColor: '#131416',
-        height: 'auto',
-        color: 'white'
-    }
-});
-
 export default function RenderRoute (){
-    const classes = useStyles();
     if(sessionStorage.getItem('token')){
         return (
             <>
                 <CssBaseline />
                         <MainTabs/>
-                        <Container maxWidth="md" className={classes.container}>
+                        <Container maxWidth="md"
+                            sx={{
+                                marginTop: '32px',
+                                paddingTop: '4px',
+                                textAlign: 'center',
+                                backgroundColor: '#131416',
+                                height: 'auto',
+                                color: 'white',
+                            }}
+                        >
                             <Switch>
                                 <Route exact path="/workouts" component={FindWorkouts}/>
                                 <Route exact path="/user/workouts" component={MyWorkouts}/>

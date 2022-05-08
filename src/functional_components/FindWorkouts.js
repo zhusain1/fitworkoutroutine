@@ -1,19 +1,17 @@
-import React, { useEffect }  from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
+import React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 import api from '../util/api';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Exercise from './Exercise';
-import FilterAccordian from './FilterAccordian';
 import EquipmentContext from '../global/EquipmentContext';
+import Filter from './Filter';
 
 const link = {
   color: 'white',
@@ -22,92 +20,8 @@ const link = {
 }
 
 const image = {
-  cursor: 'pointer'
+  cursor: 'pointer',
 }
-
-const useStyles = makeStyles({
-  root: {
-    color: 'white',
-    '& .MuiFilledInput-underline::before': {
-        borderBottom: '1px solid #F4F3EE'
-      },
-    '& .MuiFilledInput-underline::after': {
-      borderBottom: '1px solid #6F0C16'
-    },
-    minWidth: '250px',
-    height: '15px',
-    textAlign: 'left'
-  },
-  select: {
-    color: 'white',
-    minWidth: '250px',
-    textAlign: 'left',
-    '& .MuiInput-underline::before': {
-      borderBottom: '1px solid #F4F3EE',
-    },
-    '& .MuiInput-underline::after': {
-      borderBottom: '1px solid #6F0C16'
-    },
-    '& .MuiInput-underline:hover:not(.Mui-disabled)::before': {
-      borderBottom: '1px solid #6F0C16'
-    },
-    '& .MuiSvgIcon-root': {
-      color: 'white'
-    }
-  },
-  button: {
-    color: 'white',
-    backgroundColor: '#292929',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:focus': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:active': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:disabled': {
-      color: 'white'
-    },
-  },
-  secondary: {
-    color: 'white',
-    backgroundColor: 'black',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:focus': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:active': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:disabled': {
-      color: 'white'
-    }
-  },
-  container: {
-    marginTop: '8px',
-    textAlign: 'left',
-    width: 'auto',
-    backgroundColor: '#262626',
-    height: 'auto',
-    color: 'white',
-    "@media (max-width: 568px)": {
-      '& img': {
-        width: '270px',
-      },
-      width: 'auto'
-    }
-  }
-});
 
 export default function FindWorkouts() {
   const [workoutType, setWorkoutType] = React.useState("");
@@ -115,17 +29,13 @@ export default function FindWorkouts() {
   const [display, setDisplay] = React.useState(false);
   const [workoutTag, setWorkoutTag] = React.useState("All");
 
-  useEffect(() => {
-    
-    const workout_type = sessionStorage.getItem('workoutType');
-
-    if(workout_type != null){
-      setWorkoutType(workout_type)
-      sessionStorage.removeItem('workoutType');
-
+  const handleType = (e) => {
+    if(e.target.value.length > 0){
       const workout = {
-        workout_type : workoutType
+        workout_type : e.target.value
       }
+      
+      setWorkoutType(e.target.value)
   
       api({
         method: 'post',
@@ -133,64 +43,11 @@ export default function FindWorkouts() {
         data: workout
       }).then( res => {
         setWorkouts(res.data);
-        console.log(res.data)
       })
       .catch((error) => {
         console.log(error);
       });
     }
-    
-  }, [workoutType]);
-
-  useEffect(() => {
-    
-    const workout_type = sessionStorage.getItem('workoutType');
-
-    if(workout_type != null){
-      setWorkoutType(workout_type)
-      sessionStorage.removeItem('workoutType');
-
-      const workout = {
-        workout_type : workoutType
-      }
-  
-      api({
-        method: 'post',
-        url: '/workout/getWorkoutByType',
-        data: workout
-      }).then( res => {
-        setWorkouts(res.data);
-        console.log(res.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
-    
-  }, [workoutType]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const workout = {
-      workout_type : workoutType
-    }
-
-    api({
-      method: 'post',
-      url: '/workout/getWorkoutByType',
-      data: workout
-    }).then( res => {
-      setWorkouts(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  }
-
-  const disabled = () => {
-    return !workoutType
   }
 
   const displayExercise = (workoutId) => {
@@ -219,36 +76,44 @@ export default function FindWorkouts() {
         <EquipmentContext.Provider value= {{workoutTag, setWorkoutTag}}>
           <React.Fragment>          
             <h2> Find Workout</h2> 
-            <form onSubmit={handleSubmit}>
-            <FormControl className={classes.select}>
-                <InputLabel id="workout-type" className={classes.select}>
-                Focus Workout On
+            <FormControl
+              sx={{
+                padding: '12px',
+                color: 'white',
+                minWidth: '250px',
+                textAlign: 'left'
+              }}
+              variant="standard"
+            >
+                <InputLabel id="workout-type">
+                  Focus Workout On
                 </InputLabel>
                 <Select
                 labelId="workout-type"
+                sx={{
+                  color: 'white',
+                  ':after': {
+                    borderBottom: '1px solid #6F0C16'
+                  },
+                  ':before': {
+                    borderBottom: '1px solid white'
+                  },
+                  minWidth: '250px',
+                  textAlign: 'left'
+                }}
                 id="workout-type-select"
                 value={workoutType}
-                onChange={e => setWorkoutType(e.target.value)}
-                className={classes.select}
-                inputProps={{
-                    className: classes.select
-                }}
+                onChange={handleType}
                 >
-                <MenuItem value={'Chest'}>Chest</MenuItem>
-                <MenuItem value={'Arms'}>Arms</MenuItem>
-                <MenuItem value={'Legs'}>Legs</MenuItem>
-                <MenuItem value={'Back'}>Back</MenuItem>
-                <MenuItem value={'Abs'}>Abs</MenuItem>
-                <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
-                <MenuItem value={'Cardio'}>Cardio</MenuItem>
+                  <MenuItem value={'Chest'}>Chest</MenuItem>
+                  <MenuItem value={'Arms'}>Arms</MenuItem>
+                  <MenuItem value={'Legs'}>Legs</MenuItem>
+                  <MenuItem value={'Back'}>Back</MenuItem>
+                  <MenuItem value={'Abs'}>Abs</MenuItem>
+                  <MenuItem value={'Shoulders'}>Shoulders</MenuItem>
+                  <MenuItem value={'Cardio'}>Cardio</MenuItem>
                 </Select>
             </FormControl>
-            <br/>
-            <br/>
-            <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
-                Find
-            </Button>
-            </form>
             <br/>
             {displayExercises()}
             <br/>
@@ -275,16 +140,24 @@ export default function FindWorkouts() {
     if(filteredWorkouts.length >= 0){
       return(
           <>
-          <FilterAccordian/>
+          <br/>
+          <Filter/>
           <Grid container justifyContent = "center">
             <div>
-                <List className={classes.list}>
+                <List>
                     {filteredWorkouts.map((workout) =>
                         <ListItem key={workout.workoutId}>
-                          <Container maxWidth="md" className={classes.container}>
+                          <Container maxWidth="md" style={{
+                            marginTop: '8px',
+                            textAlign: 'left',
+                            width: 'auto',
+                            backgroundColor: '#262626',
+                            height: 'auto',
+                            color: 'white',
+                          }}>
                             <br/>
                             <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="400" height="240"
-                            onClick={() => displayExercise(workout.workoutId)} style={ image }
+                              onClick={() => displayExercise(workout.workoutId)} style={ image } className="thumbnail"
                             />
                             <br/>
                             <br/>
@@ -303,8 +176,6 @@ export default function FindWorkouts() {
       );
     } 
   }
-
-  const classes = useStyles();
 
   return (
     <div>

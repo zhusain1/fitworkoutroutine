@@ -1,55 +1,13 @@
 import React, { useRef, useContext } from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIconOff from '@mui/icons-material/VisibilityOff';
 import CreateUserContext from '../global/CreateUserContext';
 
-
-const useStyles = makeStyles(() => ({
-  root: {
-    color: 'white',
-    '& .MuiFilledInput-underline::before': {
-        borderBottom: '1px solid #F4F3EE'
-      },
-    '& .MuiFilledInput-underline::after': {
-      borderBottom: '1px solid #6F0C16'
-    },
-  },
-  textField: {
-    color: 'white',
-    minWidth: '250px',
-    textAlign: 'left'
-  },
-  button: {
-    color: 'white',
-    backgroundColor: 'black',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:focus': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:active': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:disabled': {
-      color: 'white',
-    },
-  },
-  icon: {
-    color: 'white'
-  },
-}));
-
 export default function CreateAccount() {
-  const classes = useStyles();
   const inputRef = useRef();
   
   /* State */ 
@@ -73,18 +31,14 @@ export default function CreateAccount() {
     }
   }
 
-  const validateRequest = (req) =>{
-    for(const prop in req){
-      if(req[prop].length < 1){
-        return false;
-      }
-    }
-    return true;
-  } 
-
   const displayError = () => {
     if(error.length > 0 ){
-      return <ErrorMessage error={error}/>
+      return (
+        <ErrorMessage sx={{
+          marginTop: '24px'
+        }}
+        error={error}/>
+      ) 
     }
   }
 
@@ -119,56 +73,41 @@ export default function CreateAccount() {
     <div>
         {displayError()}
         <br/>
+        <h2> Create Account </h2>
+        <br/>
         <form onSubmit={handleSubmit}>
-            <TextField id="first_name" label="first name" variant="filled" type="text" color="primary"
-            value={firstName} onChange={e => setFirstName(e.target.value)} className={classes.root}
-                inputProps={{
-                className: classes.textField
-                }}
-                InputLabelProps={{
-                className: classes.textField
-                }}
+            <TextField id="first_name" label="First Name" variant="outlined" type="text" value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+              color="primary" 
             />
             <br/>
             <br/>
-            <TextField id="last_name" label="last name" variant="filled" type="text" color="primary"
-            value={lastName} onChange={e => setLastName(e.target.value)} className={classes.root}
-                inputProps={{
-                className: classes.textField
-                }}
-                InputLabelProps={{
-                className: classes.textField
-                }}
+            <br/>
+            <TextField id="last_name" label="Last name" variant="outlined" type="text" value={lastName} 
+              onChange={e => setLastName(e.target.value)}
+              color="primary" 
             />
             <br/>
             <br/>
-            <TextField id="email" label="email" variant="filled" type="email" color="primary"
-            value={email} onChange={e => setEmail(e.target.value)} className={classes.root}
-                inputProps={{
-                className: classes.textField
-                }}
-                InputLabelProps={{
-                className: classes.textField
-                }}
+            <br/>
+            <TextField id="email" label="Email" variant="outlined" type="email" value={email}
+              onChange={e => setEmail(e.target.value)}
+              color="primary" 
             />
             <br/>
             <br/>
-            <TextField id="password" label="password" variant="filled" type="password" color="primary"
-            value={password} onChange={e => setPassword(e.target.value)} inputRef={inputRef} className={classes.root}
-                inputProps={{
-                    className: classes.textField
-                }}
-                InputLabelProps={{
-                className: classes.textField
-                }}
-                InputProps={{
-                className: classes.icon,
-                endAdornment: visibility
-                }}
+            <br/>
+            <TextField id="password" label="Password" variant="outlined" type="password" value={password} 
+                  onChange={e => setPassword(e.target.value)}
+                  color="primary"  inputRef={inputRef}
+                      InputProps={{
+                        endAdornment: visibility
+                  }}
             />
             <br/>
             <br/>
-        <Button color="primary" type="submit" disabled={disabled()} className={classes.button}>
+            <br/>
+        <Button variant="contained" type="submit" disabled={disabled()}>
            Next
         </Button>
         </form>

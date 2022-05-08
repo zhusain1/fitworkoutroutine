@@ -1,59 +1,21 @@
 import React, { useRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import logo from '../img/logo-transparent.png'
 import Footer from './Footer';
 import { useHistory } from 'react-router';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityIconOff from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIconOff from '@mui/icons-material/VisibilityOff';
 import MainCard from './MainCard';
 import {Helmet} from "react-helmet";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    color: 'white',
-    '& .MuiFilledInput-underline::before': {
-        borderBottom: '1px solid #F4F3EE'
-      },
-    '& .MuiFilledInput-underline::after': {
-      borderBottom: '1px solid #6F0C16'
-    },
-    minWidth: '250px',
-    textAlign: 'left'
-  },
-  icon: {
-    color: 'white'
-  },
-  button: {
-    color: 'white',
-    backgroundColor: '#292929',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:focus': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:active': {
-      backgroundColor: 'black',
-      color: 'white'
-    },
-    '&:disabled': {
-      color: 'white'
-    },
-  },
-}));
 
 const errorStyle = {
   marginTop : '-42px'
 }
 
  export default function Login() {
-    const classes = useStyles();
     const history = useHistory();
     const inputRef = useRef();
 
@@ -127,33 +89,24 @@ const errorStyle = {
           <div className='error' style={errorStyle}>
           {displayError()}
           </div>
-          <img src={logo} alt="fit workout routine logo" width="250" height="140"/>
-          <>
+          <img src={logo} alt="fit workout routine logo" width="250" height="140"
+            style = {{
+              'padding' : '18px'
+            }}
+          />
+          <React.Fragment>
               <form onSubmit={handleSubmit}>
-                  <TextField id="email" label="email" variant="filled" type="email" value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  color="primary" className={classes.root}
-                      inputProps={{
-                          className: classes.root
-                      }}
-                      InputLabelProps={{
-                        className: classes.root
-                      }}
+                  <TextField id="email" label="Email" variant="outlined" type="email" value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    color="primary" 
                   />
                   <br/>
                   <br/>
                   <br/>
-                  <TextField id="password" label="password" variant="filled" type="password" value={password} 
+                  <TextField id="password" label="Password" variant="outlined" type="password" value={password} 
                   onChange={e => setPassword(e.target.value)}
-                  color="primary" className={classes.root} inputRef={inputRef}
-                      inputProps={{
-                        className: classes.root
-                      }}
-                      InputLabelProps={{
-                        className: classes.root
-                      }}
+                  color="primary"  inputRef={inputRef}
                       InputProps={{
-                        className: classes.icon,
                         endAdornment: visibility
                       }}
                   />
@@ -161,14 +114,14 @@ const errorStyle = {
                   <br/>
                   <br/>
                   <br/>
-                  <Button variant="contained" type="submit" className={classes.button} disabled={disabled()}>
+                  <Button variant="contained" type="submit" disabled={disabled()}>
                     Login
                   </Button>
                   <br/>
                   <br/>
                   <Footer/>
               </form>
-          </>
+          </React.Fragment>
         </div>
       </MainCard>
     );

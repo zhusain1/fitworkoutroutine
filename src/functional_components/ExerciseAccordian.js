@@ -1,27 +1,15 @@
 import React, { useEffect }  from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ReactHtmlParser from 'react-html-parser';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Stream } from "@cloudflare/stream-react";
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Tag from './Tag';
 import api from '../util/api';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    width: '100%',
-    backgroundColor: '#131416',
-    color: 'white'
-   }
-}));
-
 export default function ExerciseAccordian(props) {
-  const classes = useStyles();
-
   const [checked, setChecked] = React.useState(false);
 
   useEffect(() => {
@@ -82,7 +70,11 @@ export default function ExerciseAccordian(props) {
         control={<Switch checked={checked} onChange={handleChange} name="checked" />}
         label="Saved to My Workouts"
       />
-      <Accordion className={classes.root}>
+      <Accordion sx={{
+          width: '100%',
+          backgroundColor: '#131416',
+          color: 'white'
+        }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon color='primary'/>}
           aria-controls="panel1a-content"
@@ -92,7 +84,7 @@ export default function ExerciseAccordian(props) {
         </AccordionSummary>
         <AccordionDetails>
             <div className='description' style={{textAlign: 'left'}}>
-            { ReactHtmlParser(props.workout.workoutDescription) }
+            <div dangerouslySetInnerHTML={{__html: props.workout.workoutDescription}} />
             <h3>Equipment needed: <Tag value={props.workout.workoutTag} toggle={true} /> </h3> 
             <small> Created by: {props.workout.email} </small>
             </div>

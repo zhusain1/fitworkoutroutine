@@ -9,14 +9,15 @@ export default function MainTabs() {
 
   const history = useHistory();
 
-  if((history.location.pathname !== "/" && history.location.pathname !== "/workouts" && history.location.pathname !== "/user/workouts") && sessionStorage.getItem('workout')){
+  if((history.location.pathname !== "/" && history.location.pathname !== "/workouts" && history.location.pathname !== "/user/workouts"
+  && history.location.pathname !== "/user/account") && sessionStorage.getItem('workout')){
     sessionStorage.removeItem('workout');
   }
 
 
   const determineRoutes = () => {
     if(history.location.pathname !== '/'){
-      if(history.location.pathname !== routes[0] && history.location.pathname !== routes[1]){ // not a valid path fallback
+      if(history.location.pathname !== routes[0] && history.location.pathname !== routes[1] && history.location.pathname !== routes[2]){ // not a valid path fallback
         return routes[0];
       }
       else{
@@ -28,7 +29,7 @@ export default function MainTabs() {
     }
   }
 
-  const routes = ["/workouts", "/user/workouts"];
+  const routes = ["/workouts", "/user/workouts", "/user/account"];
 
  
 
@@ -42,6 +43,7 @@ export default function MainTabs() {
           }} centered>
             <Tab label="Workouts" component={Link} to={routes[0]} value={routes[0]}  />
             <Tab label="My Workouts" component={Link} to={routes[1]} value={routes[1]}  />
+            <Tab label="Account" component={Link} to={routes[2]} value={routes[2]}  />
           </Tabs>
       </div>
   );

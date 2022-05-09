@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import FindWorkouts from './FindWorkouts';
 import MyWorkouts from './MyWorkouts';
+import Account from './Account';
 import Container from '@mui/material/Container';
 import CssBaseline from  '@mui/material/CssBaseline';
 import MainTabs from './MainTabs';
@@ -10,8 +11,14 @@ import ResetPassword from './ResetPassword';
 import Error from './Error'
 import LandingPage from './LandingPage';
 import Signup from './Signup'; 
+import {loadStripe} from '@stripe/stripe-js';
+import {
+  Elements
+} from '@stripe/react-stripe-js';
 
 export default function RenderRoute (){
+    const stripePromise = loadStripe('pk_test_dWg4X4LaroVznfa7oAOwNoum00vzNnt3hI');
+
     if(sessionStorage.getItem('token')){
         return (
             <>
@@ -30,6 +37,11 @@ export default function RenderRoute (){
                             <Switch>
                                 <Route exact path="/workouts" component={FindWorkouts}/>
                                 <Route exact path="/user/workouts" component={MyWorkouts}/>
+                                <Route exact path="/user/account">
+                                    <Elements stripe={stripePromise}>
+                                         <Account/>
+                                    </Elements>
+                                </Route>
                                 <Route exact path="/">
                                     <FindWorkouts />
                                 </Route>

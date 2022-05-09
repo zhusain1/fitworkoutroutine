@@ -45,7 +45,6 @@ export default function Signup() {
       case 1:
         return (
             <div>
-
                <Elements stripe={stripePromise}>
                 <BillingInfo user={user}/>
               </Elements>

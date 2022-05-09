@@ -10,9 +10,13 @@ import Button from '@mui/material/Button';
 import api from '../util/api';
 import ErrorMessage from './ErrorMessage';
 import { useHistory } from "react-router-dom";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function BillingInfo(user){
+export default function Account(){
     const stripe = useStripe();
     const elements = useElements();
     const history = useHistory();
@@ -40,6 +44,19 @@ export default function BillingInfo(user){
       }
     }
 
+    const deactivate = async () => {
+      // make call to deactive
+      try{
+        await api.post('/user/deactivate');
+      }catch (err) {
+        console.log(err)
+      }
+      
+      // logout 
+      sessionStorage.clear();
+      history.push('/');
+    }
+
     const displayTransaction = () => {
       if(loading){
         return(
@@ -51,7 +68,7 @@ export default function BillingInfo(user){
         return(
           <div>
             {displayError()}
-            <h3> Subscription - $7.00 monthly </h3>
+            <br/>
             <form onSubmit={handleSubmit}>
                 <div className="stripeContainer"
                 style={{
@@ -145,8 +162,10 @@ export default function BillingInfo(user){
                 <br/>
 
                 <Button variant="contained" type="submit" disabled={!stripe}>
-                    Pay
+                    Update
                 </Button>
+                <br/>
+                <br/>
             </form>
           </div>);
       }
@@ -155,7 +174,6 @@ export default function BillingInfo(user){
     const handleSubmit = async event => {
         event.preventDefault();
 
-        console.log(user)
     
         if (!stripe || !elements) {
           // Stripe.js has not loaded yet. Make sure to disable
@@ -178,23 +196,18 @@ export default function BillingInfo(user){
         }
 
 
+        
         const request = {
-            first_name: user.user.first_name,
-            last_name: user.user.last_name,
-            email: user.user.email,
-            password: user.user.password,
-            paymentMethod: payload.paymentMethod.id
+            payment_id: payload.paymentMethod.id
         }
 
         setLoading(true);
 
         try{
           setError('')
-          const response = await api.post('/user/createUser', request);
+          const response = await api.post('/user/updatePayment', request);
 
-          console.log(response.data.token)
-          
-          sessionStorage.setItem('token', response.data.token)
+          console.log(response.data)
 
           history.push(
             '/'
@@ -207,6 +220,46 @@ export default function BillingInfo(user){
     }
 
     return (
-      displayTransaction()
-    )
+      <div>
+          <Accordion sx={{
+              width: '100%',
+              backgroundColor: '#131416',
+              color: 'white'
+            }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon color='primary'/>}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <h3> Update Payment Method </h3>
+              </AccordionSummary>
+              <AccordionDetails>
+                {displayTransaction()}
+              </AccordionDetails>
+          </Accordion>
+          <Accordion sx={{
+              width: '100%',
+              backgroundColor: '#131416',
+              color: 'white'
+            }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon color='primary'/>}
+                aria-controls="panel1b-content"
+                id="panel1b-header"
+              >
+                <h3> Cancel Subscription </h3>
+              </AccordionSummary>
+              <AccordionDetails>
+              <div>
+                Cancel Subscription and delete account
+                <br/>
+                <br/>
+                <Button variant="contained" type="submit" onClick={deactivate}>
+                  Deactivate
+                </Button>
+              </div>
+              </AccordionDetails>
+          </Accordion>
+    </div>
+  )
 }

@@ -41,7 +41,7 @@ export default function MyWorkouts() {
         .catch((error) => {
             console.log(error);
         });
-        }, []);
+        }, [workouts]);
 
     const displayExercise = (workoutId) => {
         sessionStorage.setItem('workout', JSON.stringify(selectWorkoutById(workoutId)));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -29,13 +29,41 @@ export default function FindWorkouts() {
   const [display, setDisplay] = React.useState(false);
   const [workoutTag, setWorkoutTag] = React.useState("All");
 
+  useEffect(() => {
+    if(sessionStorage.getItem('workoutType')){
+
+      let workoutType = sessionStorage.getItem('workoutType') 
+
+      setWorkoutType( workoutType );
+
+      const workout = {
+        workout_type : workoutType
+      }
+
+      api({
+        method: 'post',
+        url: '/workout/getWorkoutByType',
+        data: workout
+      }).then( res => {
+        setWorkouts(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  },[workoutType]);
+ 
+
   const handleType = (e) => {
+
     if(e.target.value.length > 0){
       const workout = {
         workout_type : e.target.value
       }
       
       setWorkoutType(e.target.value)
+
+      sessionStorage.setItem('workoutType', e.target.value);
   
       api({
         method: 'post',

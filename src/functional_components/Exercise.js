@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ExerciseAccordian from './ExerciseAccordian';
+import RepInfo from './RepInfo';
 
 const button = {
     color: 'white',
@@ -24,6 +25,7 @@ export default function Exercise(props) {
       <Button variant="contained" style={button} onClick={handleBack}>
           Back
       </Button>
+      <RepInfo/>
       <ExerciseAccordian workout={props.workout}/> 
     </div>
   );

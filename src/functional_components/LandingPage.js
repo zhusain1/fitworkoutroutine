@@ -14,7 +14,7 @@ export default function LandingPage (){
 
     return(
         <div className="main">
-                <img src={logo}  className="logo" alt="fit workout routine logo" width="450" height="250"/>
+                <img src={logo}  className="logo" alt="fit workout routine logo" width="300" height="180"/>
                 <br/>
                 <div className="main_bg" style={{display:'block'}}>
                     <img src={brand} className="main_marketing" alt="fit workout routine background" width="500" height="380px"/>

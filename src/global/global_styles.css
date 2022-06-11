@@ -12,6 +12,10 @@ html,body{
     font-weight: bold;
 }
 
+.main .secondaryLanding{
+    font-size: 20px;
+}
+
 .tag span.MuiChip-label{
     cursor: pointer;
     color: white;
@@ -63,6 +67,10 @@ span.MuiStepLabel-label.Mui-active, span.MuiStepLabel-label.Mui-completed, span.
 
     .main .MuiTypography-root{
         font-size: 24px;
+    }
+
+    .main .secondaryLanding{
+        font-size: 20px;
     }
 
     .main .logo{

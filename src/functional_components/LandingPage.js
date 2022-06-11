@@ -3,6 +3,7 @@ import brand from '../img/brand.jpg';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router';
+import Link from '@mui/material/Link';
 
 export default function LandingPage (){
 
@@ -23,28 +24,48 @@ export default function LandingPage (){
                             Find and learn new exercises with quality workout video tutorials.
                         </Typography>   
                         <br/>
-                        <Button variant="contained" type="submit" onClick={handleClick}
-                            sx = {{
-                                color: 'white',
-                                backgroundColor: '#6F0C16',
-                                width: '150px',
-                                borderRadius: '28px',
-                                '&:hover': {
-                                    backgroundColor: '#292929',
-                                    color: 'white'
-                                },
-                                '&:focus': {
-                                    backgroundColor: '6F0C16',
-                                    color: 'white'
-                                },
-                                '&:active': {
-                                    backgroundColor: 'black',
-                                    color: 'white'
-                                }
-                            }}
-                        >
-                            Sign in
-                        </Button>
+                        <div className='landingButtonWrapper'>
+                            <div style={{
+                                'display': 'inline-block'
+                            }}>
+                                <Button variant="contained" type="submit" onClick={handleClick}
+                                    sx = {{
+                                        color: 'white',
+                                        backgroundColor: '#6F0C16',
+                                        width: '150px',
+                                        borderRadius: '28px',
+                                        '&:hover': {
+                                            backgroundColor: '#292929',
+                                            color: 'white'
+                                        },
+                                        '&:focus': {
+                                            backgroundColor: '6F0C16',
+                                            color: 'white'
+                                        },
+                                        '&:active': {
+                                            backgroundColor: 'black',
+                                            color: 'white'
+                                        }
+                                    }}
+                                >
+                                    Sign in
+                                </Button>
+                                <Link href="/signup" 
+                                sx={{
+                                    textDecoration: 'underline',
+                                    marginLeft: '12px',
+                                    '&:hover': {
+                                        textDecoration: 'none',
+                                        borderBottom: '2px solid #6F0C16',
+                                    },
+                                }}
+                                >
+                                    <Typography display="inline" className='secondaryLanding'>
+                                        Create Account
+                                    </Typography>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
         </div>

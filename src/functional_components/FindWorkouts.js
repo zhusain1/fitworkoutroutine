@@ -54,6 +54,32 @@ export default function FindWorkouts() {
   },[workoutType]);
  
 
+  const imageToGif = (workoutUrl) =>{
+    const thumbnails = document.getElementsByClassName('thumbnail')
+    
+    for (const thumbnail of thumbnails) {
+      if(thumbnail.src.includes(workoutUrl)){
+        let src = thumbnail.src;
+        src = src.replace('.jpg', '.gif');
+        thumbnail.src = src;
+        console.log(thumbnail.src)
+      }
+    }
+  }
+
+  const gifToImage = (workoutUrl) =>{
+    const thumbnails = document.getElementsByClassName('thumbnail')
+    
+    for (const thumbnail of thumbnails) {
+      if(thumbnail.src.includes(workoutUrl)){
+        let src = thumbnail.src;
+        src = src.replace('.gif', '.jpg');
+        thumbnail.src = src;
+        console.log(thumbnail.src)
+      }
+    }
+  }
+
   const handleType = (e) => {
 
     if(e.target.value.length > 0){
@@ -184,8 +210,9 @@ export default function FindWorkouts() {
                             color: 'white',
                           }}>
                             <br/>
-                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.gif?time=6s`} alt="sample" width="400" height="240"
-                              onClick={() => displayExercise(workout.workoutId)} style={ image } className="thumbnail"
+                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.jpg?time=6s`} alt="sample" width="400" height="240"
+                              onClick={() => displayExercise(workout.workoutId)} style={ image } className="thumbnail" onMouseOver={() => imageToGif(workout.workoutUrl)}
+                              onMouseOut={() => gifToImage(workout.workoutUrl)}
                             />
                             <br/>
                             <br/>

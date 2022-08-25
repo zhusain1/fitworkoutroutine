@@ -205,6 +205,7 @@ export default function FindWorkouts() {
                             backgroundColor: '#262626',
                             height: 'auto',
                             color: 'white',
+                            borderRadius: '8px',
                           }}>
                             <br/>
                             <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.jpg?time=6s`} alt="sample" width="400" height="240"

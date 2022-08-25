@@ -4,24 +4,21 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Exercise from './Exercise';
 import CircularProgress from '@mui/material/CircularProgress';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Container from '@mui/material/Container';
 import Skeleton from '@mui/material/Skeleton';
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 
 const link = {
     color: 'white',
     fontSize: '16px',
     textDecoration: 'none',
 }
+
+const image = {
+    cursor: 'pointer',
+}
   
-const table = {
-    color: 'white !important',
-    padding: '12px !important'
-};
 
 export default function MyWorkouts() {
     const [workouts, setWorkouts] = React.useState([]);
@@ -36,7 +33,7 @@ export default function MyWorkouts() {
                 const unsorted = res.data;
                 unsorted.sort((a, b) => a.workoutType.localeCompare(b.workoutType))
                 setWorkouts(unsorted)
-              }, 1200);
+              }, 900);
         })
         .catch((error) => {
             console.log(error);
@@ -57,6 +54,30 @@ export default function MyWorkouts() {
         }
     }
 
+    const imageToGif = (workoutUrl) =>{
+        const thumbnails = document.getElementsByClassName('thumbnail')
+        
+        for (const thumbnail of thumbnails) {
+          if(thumbnail.src.includes(workoutUrl)){
+            let src = thumbnail.src;
+            src = src.replace('.jpg', '.gif');
+            thumbnail.src = src;
+          }
+        }
+      }
+    
+      const gifToImage = (workoutUrl) =>{
+        const thumbnails = document.getElementsByClassName('thumbnail')
+        
+        for (const thumbnail of thumbnails) {
+          if(thumbnail.src.includes(workoutUrl)){
+            let src = thumbnail.src;
+            src = src.replace('.gif', '.jpg');
+            thumbnail.src = src;
+          }
+        }
+      }
+
     const chooseExercise = () => {
         if((sessionStorage.getItem('path') === window.location.pathname && sessionStorage.getItem('workout')) || display){
           let savedWorkout = JSON.parse(sessionStorage.getItem('workout'));
@@ -65,41 +86,44 @@ export default function MyWorkouts() {
                 <Exercise workout = {savedWorkout}/>
             </React.Fragment>);
         } else {
-            console.log(workouts)
             if(workouts.length > 0){
                 return (
                     <div>
                         <h2> My Workouts </h2>
                         <Grid container justifyContent = "center">
-                        <div>
-                            {workouts.length > 0 && 
-                            <TableContainer>
-                                <Table size="small">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell style={table}> <b>Workout Type</b> </TableCell>
-                                        <TableCell align="left" style={table}> <b>Workout Name</b></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
+                            <div>
+                                <List>
                                     {workouts.map((workout) =>
-                                        <TableRow key={workout.workoutId}>
-                                            <TableCell component="th" scope="row" style={table}>
+                                        <ListItem key={workout.workoutId}>
+                                        <Container maxWidth="md" style={{
+                                            marginTop: '8px',
+                                            textAlign: 'left',
+                                            width: 'auto',
+                                            backgroundColor: '#262626',
+                                            height: 'auto',
+                                            color: 'white',
+                                            borderRadius: '8px'
+                                        }}>
+                                            <br/>
+                                            <img src={`https://videodelivery.net/${workout.workoutUrl}/thumbnails/thumbnail.jpg?time=6s`} alt="sample" width="400" height="240"
+                                            onClick={() => displayExercise(workout.workoutId)} style={ image } className="thumbnail" onMouseOver={() => imageToGif(workout.workoutUrl)}
+                                            onMouseOut={() => gifToImage(workout.workoutUrl)}
+                                            />
+                                            <h3>
                                                 {workout.workoutType}
-                                            </TableCell>
-                                            <TableCell align="left">
-                                                <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
-                                                    {workout.workoutName}
-                                                </Link>
-                                            </TableCell>
-                                    </TableRow>
+                                            </h3>
+                                            <Link style={link} className="links" onClick={() => displayExercise(workout.workoutId)}>
+                                                {workout.workoutName}
+                                            </Link>
+                                            <br/>
+                                            <br/>
+                                        </Container>
+                                        </ListItem>
                                     )}
-                                </TableBody>
-                                </Table>
-                          </TableContainer>}
+                                </List>
+                            </div>
                           <br/>
                           <br/>
-                        </div>
                         </Grid>
                     </div>);
             } 

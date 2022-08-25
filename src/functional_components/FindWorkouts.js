@@ -62,7 +62,6 @@ export default function FindWorkouts() {
         let src = thumbnail.src;
         src = src.replace('.jpg', '.gif');
         thumbnail.src = src;
-        console.log(thumbnail.src)
       }
     }
   }
@@ -75,7 +74,6 @@ export default function FindWorkouts() {
         let src = thumbnail.src;
         src = src.replace('.gif', '.jpg');
         thumbnail.src = src;
-        console.log(thumbnail.src)
       }
     }
   }
@@ -179,7 +177,6 @@ export default function FindWorkouts() {
 
   const displayExercises = () => {
     let filteredWorkouts = [];
-    console.log(filteredWorkouts)
 
     if(workoutTag !== "All"){
       workouts.forEach(workout => {

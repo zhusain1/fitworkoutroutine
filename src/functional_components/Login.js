@@ -99,6 +99,7 @@ const errorStyle = {
                   <TextField id="email" label="Email" variant="outlined" type="email" value={email}
                     onChange={e => setEmail(e.target.value)}
                     color="primary" 
+                    autoFocus={true}
                   />
                   <br/>
                   <br/>

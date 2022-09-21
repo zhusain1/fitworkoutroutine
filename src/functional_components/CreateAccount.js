@@ -79,6 +79,7 @@ export default function CreateAccount() {
             <TextField id="first_name" label="First Name" variant="outlined" type="text" value={firstName}
               onChange={e => setFirstName(e.target.value)}
               color="primary" 
+              autoFocus={true}
             />
             <br/>
             <br/>

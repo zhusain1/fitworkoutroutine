@@ -6,6 +6,8 @@ import ErrorMessage from './ErrorMessage';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityIconOff from '@mui/icons-material/VisibilityOff';
 import CreateUserContext from '../global/CreateUserContext';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function CreateAccount() {
   const inputRef = useRef();
@@ -19,6 +21,11 @@ export default function CreateAccount() {
   const [togglePassword, setTogglePassword] = React.useState(false);
   const { setUser } = useContext(CreateUserContext);
 
+  // validation messages
+  const [minimumPasswordLength, setMinimumPasswordLength] = React.useState(false);
+  const [containsUpperCase, setContainsUpperCase] = React.useState(false);
+  const [containsDigit, setContainsDigit] = React.useState(false);
+
 
   const handleTogglePassword = (e) => {
     e.preventDefault();
@@ -29,6 +36,33 @@ export default function CreateAccount() {
     } else{
       inputRef.current.type = "text"
     }
+  }
+
+  const validatePassword = (password) => {
+    setPassword(password);
+
+    
+    // greater than 8 characters
+    if(password.length >= 8){
+      setMinimumPasswordLength(true);
+    } else{
+      setMinimumPasswordLength(false);
+    }
+
+    // contains upper case
+    if(password.match("[A-Z]+")) {
+      setContainsUpperCase(true);
+    } else {
+      setContainsUpperCase(false);
+    }
+
+    // contains digit
+    if(password.match("\\d")) {
+      setContainsDigit(true);
+    } else {
+      setContainsDigit(false);
+    }
+
   }
 
   const displayError = () => {
@@ -42,8 +76,20 @@ export default function CreateAccount() {
     }
   }
 
+
+  const renderValidation = (isValid) => {
+    if(isValid){
+      return <CheckCircleOutlineIcon sx={{color: '#8ac926 !important', margin: '-7px', cursor:'auto'}}/>;
+    }
+    return <HighlightOffIcon sx={{color: '#6F0C16 !important', margin: '-7px', cursor:'auto'}}/>;
+  }
+
   const disabled = () => {
-    return !email || !password || !firstName || !lastName
+
+    let isPasswordValid = containsDigit  && containsUpperCase && minimumPasswordLength
+
+    return !email || !password || !firstName || !lastName || !isPasswordValid
+
    }
 
   const handleSubmit = async (e) => {
@@ -99,13 +145,41 @@ export default function CreateAccount() {
             <br/>
             <br/>
             <TextField id="password" label="Password" variant="outlined" type="password" value={password} 
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={e => validatePassword(e.target.value)}
                   color="primary"  inputRef={inputRef}
                       InputProps={{
                         endAdornment: visibility
                   }}
             />
             <br/>
+            <br/>
+            <div className='validationWrapper'
+            style={{
+              maxWidth: '500px',
+              display: 'block'
+            }}
+            >
+            <div>
+              {renderValidation(containsUpperCase)}
+              <span className='validationText' style={{
+                'marginLeft': '16px'
+              }}>Must have at least one upper case character</span>
+            </div>
+            <br/>
+              <div>
+              {renderValidation(containsDigit)}
+                <span className='validationText' style={{
+                  'marginLeft': '16px'
+                }}>Must have at least one number</span>
+              </div>
+              <br/>
+              <div>
+              {renderValidation(minimumPasswordLength)}
+                <span className='validationText' style={{
+                  'marginLeft': '16px'
+                }}>Must be at least 8 characters </span>
+              </div>
+            </div>
             <br/>
             <br/>
         <Button variant="contained" type="submit" disabled={disabled()}>

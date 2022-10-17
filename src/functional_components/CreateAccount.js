@@ -153,31 +153,40 @@ export default function CreateAccount() {
             />
             <br/>
             <br/>
-            <div className='validationWrapper'
+            <div className='passwordWrapper'
             style={{
-              maxWidth: '500px',
-              display: 'block'
+                margin: '0 auto',
+                display: 'inline-flex',
+                marginLeft: '48px'
             }}
             >
-            <div>
-              {renderValidation(containsUpperCase)}
-              <span className='validationText' style={{
-                'marginLeft': '16px'
-              }}>Must have at least one upper case character</span>
-            </div>
-            <br/>
+              <div className='validationWrapper'
+              style={{
+                maxWidth: '500px',
+                display: 'block',
+                textAlign: 'left'
+              }}
+              >
               <div>
-              {renderValidation(containsDigit)}
+                {renderValidation(containsUpperCase)}
                 <span className='validationText' style={{
                   'marginLeft': '16px'
-                }}>Must have at least one number</span>
+                }}>At least one upper case character</span>
               </div>
               <br/>
-              <div>
-              {renderValidation(minimumPasswordLength)}
-                <span className='validationText' style={{
-                  'marginLeft': '16px'
-                }}>Must be at least 8 characters </span>
+                <div>
+                {renderValidation(containsDigit)}
+                  <span className='validationText' style={{
+                    'marginLeft': '16px'
+                  }}>At least one number</span>
+                </div>
+                <br/>
+                <div>
+                {renderValidation(minimumPasswordLength)}
+                  <span className='validationText' style={{
+                    'marginLeft': '16px'
+                  }}>At least 8 characters </span>
+                </div>
               </div>
             </div>
             <br/>

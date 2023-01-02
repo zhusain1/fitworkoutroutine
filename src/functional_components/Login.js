@@ -91,7 +91,7 @@ const errorStyle = {
         }).then( res => {
             setError('');
 
-            sessionStorage.setItem('token', res.data)
+            sessionStorage.setItem('token', res.data.token)
 
             history.push(
               '/'

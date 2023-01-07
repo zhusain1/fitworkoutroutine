@@ -15,6 +15,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {
   Elements
 } from '@stripe/react-stripe-js';
+import Privacy from './Privacy';
 
 export default function RenderRoute (){
     const stripePromise = loadStripe('pk_test_dWg4X4LaroVznfa7oAOwNoum00vzNnt3hI');
@@ -57,6 +58,7 @@ export default function RenderRoute (){
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/forgotpassword" component={ResetPassword}/>
                     <Route exact path="/signup" component={Signup}/> 
+                    <Route exact path="/privacy" component={Privacy}/> 
                     <Route component={LandingPage}/>
                 </Switch>
             </>

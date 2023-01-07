@@ -16,6 +16,7 @@ import {
   Elements
 } from '@stripe/react-stripe-js';
 import Privacy from './Privacy';
+import Eula from './Eula';
 
 export default function RenderRoute (){
     const stripePromise = loadStripe('pk_test_dWg4X4LaroVznfa7oAOwNoum00vzNnt3hI');
@@ -59,6 +60,7 @@ export default function RenderRoute (){
                     <Route exact path="/forgotpassword" component={ResetPassword}/>
                     <Route exact path="/signup" component={Signup}/> 
                     <Route exact path="/privacy" component={Privacy}/> 
+                    <Route exact path="/eula" component={Eula}/> 
                     <Route component={LandingPage}/>
                 </Switch>
             </>

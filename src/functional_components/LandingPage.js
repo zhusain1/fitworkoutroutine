@@ -64,10 +64,21 @@ export default function LandingPage (){
                                         Create Account
                                     </Typography>
                                 </Link>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <a href='https://apps.apple.com/us/app/fit-workout-routine/id6444746073?itsct=apps_box_badge&itscg=30200'>
+                                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/en-us?size=250x83&releaseDate=1677801600" alt="Download on the App Store"
+                                        style={{
+                                            paddingLeft:'16px'
+                                        }}
+                                    />
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+                
         </div>
     );
 }

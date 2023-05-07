@@ -7,6 +7,15 @@ const theme = createTheme({
     },
     secondary: {
       main: '#6F0C16'
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+      },
     }
   }, 
 
@@ -14,13 +23,14 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          maxWidth: 550,
-          paddingTop: 30,
-          marginTop: 80,
+          width: 350,
+          height: 300,
+          paddingTop: 10,
           textAlign: 'center',
           color: 'white',
-          backgroundColor: '#131416',
-          boxShadow: '0 -1px 1px #131416',
+          backgroundColor: '#232428',
+          boxShadow: '0 -1px 1px #121314',
+          fontSize: '16px'
         }
       }
     },

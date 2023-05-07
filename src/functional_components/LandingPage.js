@@ -1,84 +1,100 @@
 import logo from '../img/logo-transparent.png';
-import brand from '../img/brand.jpg';
-import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
-import { useHistory } from 'react-router';
+import brand from '../img/iphone_landing2.png';
+import { Stack, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Item from '@mui/material/Stack'
+import MainCard from './MainCard';
 import Link from '@mui/material/Link';
 
-export default function LandingPage (){
-
-    const history = useHistory();
-
-    const handleClick = () => {
-        history.push('/login');    
-    }
-
-    return(
+export default function LandingPage() {
+    return (
         <div className="main">
-                <img src={logo}  className="logo" alt="fit workout routine logo" width="300" height="180"/>
-                <br/>
-                <div className="main_bg" style={{display:'block'}}>
-                    <img src={brand} className="main_marketing" alt="fit workout routine background" width="500" height="380px"/>
-                    <div className="mainDescription" style={{marginTop: '20px'}}>
-                        <Typography style={{color:'white', maxWidth: '350px'}}>
-                            Find and learn new exercises with quality workout video tutorials.
-                        </Typography>   
-                        <br/>
-                        <div className='landingButtonWrapper'>
-                            <div style={{
-                                'display': 'inline-block'
-                            }}>
-                                <Button variant="contained" type="submit" onClick={handleClick}
-                                    sx = {{
-                                        color: 'white',
-                                        backgroundColor: '#6F0C16',
-                                        width: '150px',
-                                        borderRadius: '28px',
-                                        '&:hover': {
-                                            backgroundColor: '#292929',
-                                            color: 'white'
-                                        },
-                                        '&:focus': {
-                                            backgroundColor: '6F0C16',
-                                            color: 'white'
-                                        },
-                                        '&:active': {
-                                            backgroundColor: 'black',
-                                            color: 'white'
-                                        }
-                                    }}
-                                >
-                                    Sign in
-                                </Button>
-                                <Link href="/signup" 
-                                sx={{
-                                    textDecoration: 'underline',
-                                    marginLeft: '12px',
-                                    '&:hover': {
-                                        textDecoration: 'none',
-                                        borderBottom: '2px solid #6F0C16',
-                                    },
-                                }}
-                                >
-                                    <Typography display="inline" className='secondaryLanding'>
-                                        Create Account
-                                    </Typography>
-                                </Link>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <a href='https://apps.apple.com/us/app/fit-workout-routine/id6444746073?itsct=apps_box_badge&itscg=30200'>
-                                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/en-us?size=250x83&releaseDate=1677801600" alt="Download on the App Store"
-                                        style={{
-                                            paddingLeft:'16px'
-                                        }}
-                                    />
-                                </a>
-                            </div>
+            <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Stack
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Item>
+                        <img src={logo} className="logo" alt="fit workout routine logo" width="300" height="180" />
+                    </Item>
+                    <Item>
+                        <div className="mainDescription" style={{padding: '8px'}}>
+                            <Typography style={{ color: 'white', maxWidth: '370px', textAlign: 'center', padding: '4px', fontSize: '18px', fontWeight: 'bold' }}>
+                                Spice up your workout by learning new exercises with <br/> Fit Workout Routine.
+                            </Typography>
                         </div>
-                    </div>
-                </div>
-                
+                    </Item>
+                    <Item>
+                    <br/>
+                        <a href='https://apps.apple.com/us/app/fit-workout-routine/id6444746073?itsct=apps_box_badge&itscg=30200'>
+                            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/en-us?size=250x83&releaseDate=1677801600" alt="Download on the App Store"/>
+                        </a>
+                    </Item>
+                    <Item>
+                        <div className="main_bg">
+                            <img src={brand} className="main_marketing" alt="fit workout routine background" width="550" height="550px" />
+                        </div>
+                    </Item>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Item>
+                        <Typography component="div">
+                            <h2> Fit Workout Routine Features</h2>
+                        </Typography>
+                    </Item>
+                    <br/>
+                    <Item>
+                        <Stack
+                            direction={{xs: "column", sm: "column", md: "column", lg: "row", xl:"row"}}
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={3}
+                        >
+                            <Item>
+                                <MainCard>
+                                    <h3>Video Tutorials</h3>
+                                    <p>
+                                        Get guidance on proper form and technique from experienced fitness trainers with high-quality video tutorials for each exercise. Whether you’re learning new exercises or refining your technique for familiar ones, the tutorials will help you get the most out of your workout routine.
+                                    </p>
+                                </MainCard>
+                            </Item>
+                            <Item>
+                                <MainCard>
+                                    <h3>Beginner Friendly</h3>
+                                    <p>
+                                        Fit Workout Routine is a great resource for both beginners and experienced gym-goers alike. With a variety of exercises and videos, the app makes it easy to learn and practice new techniques. Beginners can use the app to get guidance while seasoned gym-goers can use it to mix up their workout routine.
+                                    </p>
+                                </MainCard>
+                            </Item>
+                            <Item>
+                                <MainCard>
+                                    <h3>Log & Track</h3>
+                                    <p>
+                                        Easily search for exercises and workouts based on body part or exercise type with Fit Workout Routine. Once you find the exercises you want to do, you can log your sets, reps, and weight used to track your progress.
+                                    </p>
+                                </MainCard>
+                            </Item>
+                        </Stack>
+                    </Item>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Item>
+                        <div className="Footers" style={{textAlign: 'center'}}>
+                            <Typography component="div">
+                                <Link href="/eula">EULA</Link> 
+                                &nbsp;&nbsp;|&nbsp;&nbsp; 
+                                <Link href="/privacy">Privacy Policy</Link> 
+                            </Typography>
+                        </div>
+                    </Item>
+                </Stack>
+            </Box>
         </div>
     );
 }

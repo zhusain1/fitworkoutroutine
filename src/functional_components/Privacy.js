@@ -1,11 +1,12 @@
 import React from 'react'
-import MainCard from './MainCard'
+import { Typography } from '@mui/material';
+import Container from '@mui/material/Container';
 
-export default function Privacy (){
+export default function Privacy() {
   return (
-    <div>
-      <MainCard>
-        <h1>Privacy Policy of<br/><strong>Fit Workout Routine</strong></h1>
+    <Container maxWidth="sm">
+      <Typography component="div">
+        <h1>Privacy Policy of<br /><strong>Fit Workout Routine</strong></h1>
         <p>In order to receive information about your Personal Data, the purposes and the parties the Data is shared with, contact the Owner.</p>
         <br />
         <h2 id="owner_of_the_data">
@@ -111,7 +112,7 @@ export default function Privacy (){
           <br />
         </ul>
         <h3 className="iub-subheading iub-subheading-legal-right-to-object">
-          <br /> Details about the right to object to processing 
+          <br /> Details about the right to object to processing
         </h3>
         <p>Where Personal Data is processed for a public interest, in the exercise of an official authority vested in the Owner or for the purposes of the legitimate interests pursued by the Owner, Users may object to such processing by providing a ground related to their particular situation to justify the objection.</p>
         <p>Users must know that, however, should their Personal Data be processed for direct marketing purposes, they can object to that processing at any time without providing any justification. To learn, whether the Owner is processing Personal Data for direct marketing purposes, Users may refer to the relevant sections of this document. </p>
@@ -127,7 +128,7 @@ export default function Privacy (){
         <p>The User's Personal Data may be used for legal purposes by the Owner in Court or in the stages leading to possible legal action arising from improper use of this Application or the related Services. <br />The User declares to be aware that the Owner may be required to reveal personal data upon request of public authorities. </p>
         <br />
         <h3 className="iub-subheading iub-subheading-legal-specific-info">
-           Additional information about User's Personal Data 
+          Additional information about User's Personal Data
         </h3>
         <p>In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular Services or the collection and processing of Personal Data upon request.</p>
         <br />
@@ -136,14 +137,14 @@ export default function Privacy (){
         </h3>
         <p>For operation and maintenance purposes, this Application and any third-party services may collect files that record interaction with this Application (System logs) use other Personal Data (such as the IP Address) for this purpose.</p>
         <h3 className="iub-subheading iub-subheading-legal-information-not-contained">
-           <br/>Information not contained in this policy
+          <br />Information not contained in this policy
         </h3>
         <p>More details concerning the collection or processing of Personal Data may be requested from the Owner at any time. Please see the contact information at the beginning of this document.</p>
         <h3 className="iub-subheading iub-subheading-legal-how-do-not-track">
           <br /> How “Do Not Track” requests are handled
         </h3>
         <p>This Application does not support “Do Not Track” requests. <br />To determine whether any of the third-party services it uses honor the “Do Not Track” requests, please read their privacy policies. </p>
-        <br/>
+        <br />
         <h3>Changes to this privacy policy</h3>
         <p>The Owner reserves the right to make changes to this privacy policy at any time by notifying its Users on this page and possibly within this Application and/or - as far as technically and legally feasible - sending a notice to Users via any contact information available to the Owner. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. <br />
           <br />Should the changes affect processing activities performed on the basis of the User’s consent, the Owner shall collect new consent from the User, where required.
@@ -176,7 +177,7 @@ export default function Privacy (){
           <br />
           <small> Latest update: January 03, 2023 </small>
         </p>
-      </MainCard>
-    </div>
+      </Typography>
+    </Container>
   )
 }

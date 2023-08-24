@@ -57,9 +57,9 @@ export default function LandingPage() {
                         >
                             <Item>
                                 <MainCard>
-                                    <h3>Video Tutorials</h3>
+                                    <h3>Ease of Use</h3>
                                     <p>
-                                        Get guidance on proper form and technique from experienced fitness trainers with high-quality video tutorials for each exercise. Whether you’re learning new exercises or refining your technique for familiar ones, the tutorials will help you get the most out of your workout routine.
+                                        Fit Workout Routine is meant to not disrupt your exercise, but be used as a tool to improve your workout sessions. Logging and planning exercises within the app is very intuitive. 
                                     </p>
                                 </MainCard>
                             </Item>

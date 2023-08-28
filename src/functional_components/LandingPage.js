@@ -17,6 +17,7 @@ export default function LandingPage() {
                 <Stack
                     justifyContent="center"
                     alignItems="center"
+                    style={{textAlign:"center"}}
                 >
                     <Item>
                         <img src={logo} className="logo" alt="fit workout routine logo" width="300" height="180" />
@@ -33,6 +34,12 @@ export default function LandingPage() {
                         <a href='https://apps.apple.com/us/app/fit-workout-routine/id6444746073?itsct=apps_box_badge&itscg=30200'>
                             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/en-us?size=250x83&releaseDate=1677801600" alt="Download on the App Store"/>
                         </a>
+
+
+                    <br/>
+                        <a href="https://www.producthunt.com/posts/fit-workout-routine?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-fit&#0045;workout&#0045;routine" target="__blank">
+                            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=411220&theme=light" alt="Fit&#0032;Workout&#0032;Routine - IOS&#0032;fitness&#0032;app&#0032;providing&#0032;an&#0032;exercise&#0032;log&#0032;and&#0032;demo&#0032;videos | Product Hunt" style={{width: "250px", height: "54px"}}/>
+                        </a>   
                     </Item>
                     <Item>
                         <div className="main_bg">

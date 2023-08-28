@@ -56,6 +56,10 @@ span.MuiStepLabel-label.Mui-active, span.MuiStepLabel-label.Mui-completed, span.
     float: right;
 }
 
+.main .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root {
+    height: 300px;
+}
+
 /* Mobile screen */ 
 @media only screen 
   and (min-device-width: 320px)

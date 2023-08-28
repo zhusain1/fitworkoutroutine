@@ -38,7 +38,7 @@ export default function LandingPage() {
 
                     <br/>
                         <a href="https://www.producthunt.com/posts/fit-workout-routine?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-fit&#0045;workout&#0045;routine" target="__blank">
-                            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=411220&theme=light" alt="Fit&#0032;Workout&#0032;Routine - IOS&#0032;fitness&#0032;app&#0032;providing&#0032;an&#0032;exercise&#0032;log&#0032;and&#0032;demo&#0032;videos | Product Hunt" style={{width: "250px", height: "54px"}}/>
+                            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=411220&theme=neutral" alt="Fit&#0032;Workout&#0032;Routine - IOS&#0032;fitness&#0032;app&#0032;providing&#0032;an&#0032;exercise&#0032;log&#0032;and&#0032;demo&#0032;videos | Product Hunt" style={{width: "250px", height: "54px"}}/>
                         </a>   
                     </Item>
                     <Item>

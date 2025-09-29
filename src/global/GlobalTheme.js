@@ -24,14 +24,14 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           width: 350,
-          height: 420,
+          height: 200,
           paddingTop: 10,
           textAlign: 'center',
           color: 'white',
-          backgroundColor: '#232428',
+          backgroundColor: '#12100E',
           boxShadow: '0 -1px 1px #121314',
           fontSize: '16px',
-          margin: '0 auto !important'
+          borderRadius: '16px',
         }
       }
     },

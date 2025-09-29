@@ -1,101 +1,35 @@
 html,body{
-    background: #131416 !important;  
+    background-image: linear-gradient(to right, #131416, #1A1B25, #131416);
+    background-color: #131416;
 }
 
 body{
     color: #FFFFFF;
 }
 
-.main .MuiTypography-root{
-    font-size: 16px;
-    line-height: 1.5; 
+.logo {
+  display: block;        
+  padding-left: 40px;    
+  margin: 0;             
 }
 
-.main .secondaryLanding{
-    font-size: 20px;
+@media (max-width: 600px) {
+  .logo {
+    margin: 0 auto;      
+    padding-left: 0;     
+  }
 }
 
-.tag span.MuiChip-label{
-    cursor: pointer;
-    color: white;
+
+.mainDescription {
+  padding: 8px;
+  text-align: left; /* default for larger screens */
 }
 
-.tag .MuiChip-root:hover{
-    background-color: black;
+@media (max-width: 600px) {
+  .mainDescription {
+    text-align: center; /* center on mobile */
+  }
 }
 
-/* Create Account Stepper */
-span.MuiStepLabel-label.Mui-active, span.MuiStepLabel-label.Mui-completed, span.MuiStepLabel-label.Mui-disabled {
-    color: white;
-}
-
-.MuiStepIcon-root {
-    color: white !important;
-}
-
-.links:hover{
-    border-bottom: 2px solid #6F0C16;
-    cursor: pointer;
-}
-
-.MuiSvgIcon-root {
-    cursor: pointer;
-    color: white !important;
-}
-
-.MuiSvgIcon-root:hover {
-    color: #6F0C16;
-}
-
-.MuiMenuItem-root, .MuiMenu-list{
-    background-color: black !important;
-    color: white !important;
-}
-
-.mainDescription{
-    float: right;
-}
-
-.main .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root {
-    height: 300px;
-}
-
-/* Mobile screen */ 
-@media only screen 
-  and (min-device-width: 320px)
-  and (max-device-width: 568px) {
-    .MuiTab-root{
-        font-size: 14px !important;
-    }
-
-    .main .MuiTypography-root{
-        font-size: 16px;
-    }
-
-    .main .secondaryLanding{
-        font-size: 20px;
-    }
-
-    .main .logo{
-        width: 250px;
-        height: 140px;
-    }
-
-    .main .main_marketing{
-        max-width: 100%;
-        height: auto;
-    }
-
-    .thumbnail{
-        width: 324px;
-        height: auto;
-    }
-
-    .logout{
-        margin: auto !important;
-        float: none !important;
-        display: flex !important;
-        margin-right: 10px !important;
-    }
-}
 
